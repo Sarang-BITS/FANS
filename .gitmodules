@@ -1,1 +1,7 @@
 
+[submodule "drone_net_swarm_planner_stack"]
+	path = drone_net_swarm_planner_stack
+	url = https://github.com/MihirDharmadhikari/drone_net_swarm_planner_stack
+[submodule "mavad"]
+	path = mavad
+	url = https://github.com/adbidwai/mavad.git
