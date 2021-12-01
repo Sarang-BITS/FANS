@@ -144,10 +144,27 @@ alias sop_ws='source ~/sop_ws/devel/setup.bash'
 ```
 
 ## [B] Installing and setting up NS3 with cmake
-* Install the normal version of NS3 
-* 
+
+### 0) Resources used
+* NS3 official documentation : https://www.nsnam.org/wiki/Installation#Installation
+* NS3 with cmake : https://gabrielcarvfer.github.io/NS3/installation
+
+### 1) Installation of standard/normal and cmake versions of NS3
+* Install the standard version of NS3 ; Install all the required dependencies from [this](https://www.nsnam.org/wiki/Installation#Ubuntu.2FDebian.2FMint) link, and then install NS3 from [this](https://www.nsnam.org/wiki/Installation#Installation) link in the following way: <br/>
+a) `Manual installation` -> `Downloading ns-3 Using Git` <br/>
+b) `Building ns-3 with build.py` <br/>
+c) `Configuration with Waf` <br/>
+d) `Validating` <br/>
+
+* Clone the cmake version of NS3 inside the `ns-3-allinone` folder
 ```
-cd ~/ns-3-allinone/ns3_NS3
+cd ~/ns-3-allinone
+git clone https://github.com/Gabrielcarvfer/NS3.git
+```
+
+* Build the cmake version of NS3
+```
+cd ~/ns-3-allinone/NS3
 mkdir cmake-cache
 cd cmake-cache
 cmake -DCMAKE_BUILD_TYPE=DEBUG ..
