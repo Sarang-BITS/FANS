@@ -87,6 +87,35 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot/Tools/sitl_
 #echo -e "GAZEBO_MODEL_PATH $GAZEBO_MODEL_PATH"
 #echo -e "LD_LIBRARY_PATH $LD_LIBRARY_PATH"
 ```
+### 6) [Optional] Add downward pointing camera to your drones in Gazebo
+* Inside the file `iris.sdf.jinja` in `PX4-Autopilot/Tools/sitl_gazebo/models/iris`, add the following code snippet at the end after the `</plugin>` tag and before the `</model>` 
+```xml
+<include>
+	<uri>model://fpv_cam</uri>
+	<pose>0.1 0 0 0 1.5708 0</pose>
+</include>
+<joint name="fpv_cam_joint" type="fixed">
+	<child>fpv_cam::link</child>
+	<parent>base_link</parent>
+	<axis>
+		<xyz>0 0 1</xyz>
+		<limit>
+			<upper>0</upper>
+			<lower>0</lower>
+		</limit>
+	</axis>
+</joint>
+```
+### 7) Testing the setup
+* Source your workspace in the current working terminal
+```
+source ~/sop_ws/devel.setup.bash
+```
+* Launch PX4 and MAVROS nodes using the following command
+```
+roslaunch px4 mavros_posix_sitl.launch
+```
+* 
 ### n) Tips for fast execution
 * Create an alias in your `.bashrc` file with the name of your workspace to source your workspace from any terminal super fast. For e.g. if the name of your workspace is `sop_ws` (assumed to be there in the `~` directory), add the following line in your `.bashrc` file (present in the `~` folder).
 ```
