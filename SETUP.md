@@ -144,3 +144,12 @@ alias sop_ws='source ~/sop_ws/devel/setup.bash'
 ```
 
 ## [B] Installing and setting up NS3 with cmake
+* Install the normal version of NS3 
+* 
+```
+cd ~/ns-3-allinone/ns3_NS3
+mkdir cmake-cache
+cd cmake-cache
+cmake -DCMAKE_BUILD_TYPE=DEBUG ..
+make
+```
