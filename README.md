@@ -111,11 +111,32 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot/Tools/sitl_
 ```
 source ~/sop_ws/devel.setup.bash
 ```
-* Launch PX4 and MAVROS nodes using the following command
+* Launch PX4 and MAVROS nodes using the following command, you must see an iris drone in a Gazebo world environment.
 ```
 roslaunch px4 mavros_posix_sitl.launch
 ```
-* 
+* In a new terminal, run the following command
+```
+rostopic echo /mavros/state
+```
+If it shows the `connected` parameter to be `True` as shown below, then you may assume that your setup works fine. 
+```
+---
+header: 
+  seq: 29
+  stamp: 
+    secs: 29
+    nsecs: 336000000
+  frame_id: ''
+connected: True
+armed: False
+guided: False
+manual_input: True
+mode: "AUTO.LOITER"
+system_status: 3
+---
+```
+
 ### n) Tips for fast execution
 * Create an alias in your `.bashrc` file with the name of your workspace to source your workspace from any terminal super fast. For e.g. if the name of your workspace is `sop_ws` (assumed to be there in the `~` directory), add the following line in your `.bashrc` file (present in the `~` folder).
 ```
