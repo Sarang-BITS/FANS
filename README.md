@@ -6,3 +6,5 @@
 * [Vishal Singh](https://www.github.com/vishalbhsc)
 * [Shambhavi Singh](https://www.github.com/28shambhavi)
 * [Aditya Bidwai](https://www.github.com/adbidwai)
+* [Ojit Mehta]
+* [Mihir Dharmadhikari]
