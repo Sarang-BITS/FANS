@@ -1,4 +1,4 @@
-# Meta repository for the project course under the guidance of [Prof. Dr. Sarang Dhongdi](https://www.bits-pilani.ac.in/goa/sarang/profile) at BITS-PILANI, K K Birla Goa Campus.
+# Meta repository for the Airborne Network project at BITS-PILANI, K K Birla Goa Campus.
 
 
 ## Contributors
