@@ -111,7 +111,7 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot/Tools/sitl_
 ### 7) Testing the setup
 * Source your workspace in the current working terminal
 ```
-source ~/sop_ws/devel.setup.bash
+source ~/sop_ws/devel/setup.bash
 ```
 * Launch PX4 and MAVROS nodes using the following command, you must see an iris drone in a Gazebo world environment.
 ```
