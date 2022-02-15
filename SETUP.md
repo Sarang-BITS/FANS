@@ -50,6 +50,7 @@ pip install \
 * After ROS installation is complete, set up and initialize a ROS workspace with any name (for e.g. `sop_ws`)
 ```
 mkdir -p sop_ws/src
+cd sop_ws
 catkin init && wstool init src
 ```
 * Add the .rosinstall files for MAVROS and MAVLink and build them (Note that the below steps are to be done in the root of the workspace)
