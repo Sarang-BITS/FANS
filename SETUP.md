@@ -22,18 +22,18 @@ sudo usermod -a -G dialout $USER
 sudo apt-get remove modemmanager -y
 
 sudo apt install -y \
-	ninja-build
-	exiftool
-	python-argparse
-	python-empy
-	python-toml
-	python-numpy
-	python-yaml
-	python-dev
-	python-pip
-	ninja-build
-	protobuf-compiler
-	libeigen3-dev
+	ninja-build \
+	exiftool \
+	python-argparse \
+	python-empy \
+	python-toml \
+	python-numpy \
+	python-yaml \
+	python-dev \
+	python-pip \
+	ninja-build \
+	protobuf-compiler \
+	libeigen3-dev \
 	genromfs
 pip install \
 	pandas \
