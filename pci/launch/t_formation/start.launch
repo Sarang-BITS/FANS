@@ -1,0 +1,39 @@
+<launch>
+  <group ns="uav0">
+    <rosparam command="load" file="$(find pci)/config/uav0.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav0.yaml" />
+    <node pkg="pci" type="pci_node" name="uav0" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <group ns="uav1">
+    <rosparam command="load" file="$(find pci)/config/uav1.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav1.yaml" />
+    <node pkg="pci" type="pci_node" name="uav1" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <group ns="uav2">
+    <rosparam command="load" file="$(find pci)/config/uav2.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav2.yaml" />
+    <node pkg="pci" type="pci_node" name="uav2" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <group ns="uav3">
+    <rosparam command="load" file="$(find pci)/config/uav3.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav3.yaml" />
+    <node pkg="pci" type="pci_node" name="uav3" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <group ns="uav4">
+    <rosparam command="load" file="$(find pci)/config/uav4.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav4.yaml" />
+    <node pkg="pci" type="pci_node" name="uav4" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <group ns="uav5">
+    <rosparam command="load" file="$(find pci)/config/uav5.yaml" />
+    <rosparam command="load" file="$(find planner)/config/t_formation/uav5.yaml" />
+    <node pkg="pci" type="pci_node" name="uav5" output="screen" />
+    <node pkg="planner" type="tf_planner_node" name="uav_pl" output="screen" />
+  </group>
+  <rosparam command="load" file="$(find planner)/config/t_formation/common_params.yaml" />
+</launch>
