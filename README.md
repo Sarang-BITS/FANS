@@ -10,3 +10,7 @@
 * [Shambhavi Singh](https://www.github.com/28shambhavi)
 * [Aditya Bidwai](https://www.github.com/adbidwai)
 
+Master branch has Co-simulator code.
+no_ros branch has NS3 only version of the code.
+
+Planner was initialled trained / perfected in NS3 only version as run time of NS3 only version is much lesser than co-simulator version, and once planner is perfected it can be easily modified to co-simulator version.
