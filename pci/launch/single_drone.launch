@@ -1,0 +1,6 @@
+<launch>
+  <!-- <group ns="uav"> --> <!-- Uncomment the group tag and put the namespace -->
+    <rosparam command="load" file="$(find pci)/config/uav.yaml" />
+    <node pkg="pci" type="pci_node" name="uav1" output="screen" />
+  <!-- </group> -->
+</launch>
