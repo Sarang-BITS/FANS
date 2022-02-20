@@ -1,8 +1,8 @@
-# FANS : Flying Ad-hoc Network Simulator
+# FANS : Flying Ad-hoc Network Simulator (main branch)
 
-## Branches
-* **main** : Contains the entire co-simulator setup which integrates NS3 (networking) and PX4-SITL in Gazebo (robot simulator)
-* **no_ros** : Contains the networking + planner stack with visualizations in NetAnim
+## Content Description
+* **mavad** : Networking + Planning stack of the cosimulator codebase
+* **pci** : (Planner - Control Interface) Interface between **mavad** and **MAVROS** to further connect to PX4-SITL in Gazebo
 
 ## Contributors
 * [Sarang Dhongdi](https://github.com/Sarang-BITS)
@@ -13,4 +13,6 @@
 * [Shambhavi Singh](https://www.github.com/28shambhavi)
 * [Aditya Bidwai](https://www.github.com/adbidwai)
 
-Planner was initially trained / perfected in NS3 only version as run time of NS3 only version is much lesser than co-simulator version, and once planner is perfected it can be easily modified to co-simulator version.
+## Branches
+* **main** : Contains the entire co-simulator setup which integrates NS3 (networking) and PX4-SITL in Gazebo (robot simulator)
+* **no_ros** : Contains the networking + planner stack with visualizations in NetAnim
