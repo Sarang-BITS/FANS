@@ -1,0 +1,264 @@
+\hypertarget{structrnl_1_1DroneSoc}{}\section{rnl\+:\+:Drone\+Soc Struct Reference}
+\label{structrnl_1_1DroneSoc}\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+
+
+Drone Socket common for planning and communication.  
+
+
+
+
+{\ttfamily \#include $<$planner\+\_\+ns3.\+h$>$}
+
+
+
+Collaboration diagram for rnl\+:\+:Drone\+Soc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{structrnl_1_1DroneSoc__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a064d6dcee6a438e84bc75a211757518a}\label{structrnl_1_1DroneSoc_a064d6dcee6a438e84bc75a211757518a}} 
+\hyperlink{structrnl_1_1DroneSoc_a064d6dcee6a438e84bc75a211757518a}{Drone\+Soc} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Drone Soc object. \end{DoxyCompactList}\item 
+void \hyperlink{structrnl_1_1DroneSoc_a21ec1cbe2adaefffc5f4472a59b07d6f}{send\+Packet} (ns3\+::\+Time pkt\+Interval, int n)
+\begin{DoxyCompactList}\small\item\em send Packet after every pkt\+Interval. ~\newline
+ This registers a callback which is periodically called \end{DoxyCompactList}\item 
+void \hyperlink{structrnl_1_1DroneSoc_ab6c91121d046bf9632c1353c30ffde73}{send\+Bc\+Packet} (ns3\+::\+Time pkt\+Interval, int n)
+\begin{DoxyCompactList}\small\item\em Send a broadcast packet. \end{DoxyCompactList}\item 
+void \hyperlink{structrnl_1_1DroneSoc_a4945013e829ed896e2ca82699e62e711}{receive\+Packet} (ns3\+::\+Ptr$<$ ns3\+::\+Socket $>$ soc)
+\begin{DoxyCompactList}\small\item\em Socket receiving callback. ~\newline
+This function will be called as an interrupt if something is received at the socket end. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a89739bd5df166ca8b53e56eb3b10ec77}\label{structrnl_1_1DroneSoc_a89739bd5df166ca8b53e56eb3b10ec77}} 
+void \hyperlink{structrnl_1_1DroneSoc_a89739bd5df166ca8b53e56eb3b10ec77}{close\+Sender} ()
+\begin{DoxyCompactList}\small\item\em Terminate all sockets and send shut down command for this nodea. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a552f5f4e560c562ac249ff8f255f48c9}\label{structrnl_1_1DroneSoc_a552f5f4e560c562ac249ff8f255f48c9}} 
+void \hyperlink{structrnl_1_1DroneSoc_a552f5f4e560c562ac249ff8f255f48c9}{update\+Send\+Msg} ()
+\begin{DoxyCompactList}\small\item\em update send message with the correct parent location and parent id to follow \end{DoxyCompactList}\item 
+void \hyperlink{structrnl_1_1DroneSoc_ace69ee9fbd96e334a32fb5d499c70588}{set\+Bc\+Sender} (ns3\+::\+Ptr$<$ ns3\+::\+Node $>$ node, ns3\+::\+Type\+Id tid)
+\begin{DoxyCompactList}\small\item\em Setup the node for broadcasting. \end{DoxyCompactList}\item 
+void \hyperlink{structrnl_1_1DroneSoc_a79565f4fa767a87e45e400e1ab0b03f8}{set\+Sender} (ns3\+::\+Ptr$<$ ns3\+::\+Node $>$ node, ns3\+::\+Type\+Id tid, const std\+::string \&ip)
+\begin{DoxyCompactList}\small\item\em Initialize the sender. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a7d39b630d3ace733b06e89879edacbbc}\label{structrnl_1_1DroneSoc_a7d39b630d3ace733b06e89879edacbbc}} 
+void {\bfseries set\+Recv} (ns3\+::\+Ptr$<$ ns3\+::\+Node $>$ node, ns3\+::\+Type\+Id tid)
+\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a7db06059f42f449bcf5b93aa299924dd}\label{structrnl_1_1DroneSoc_a7db06059f42f449bcf5b93aa299924dd}} 
+void \hyperlink{structrnl_1_1DroneSoc_a7db06059f42f449bcf5b93aa299924dd}{set\+Req\+Drone} ()
+\begin{DoxyCompactList}\small\item\em Set if more drone required at the boundary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ns3\+::\+Ptr$<$ ns3\+::\+Socket $>$ \hyperlink{structrnl_1_1DroneSoc_a1d4ae61d59f86c1efe46ca221711f07e}{source}
+\item 
+ns3\+::\+Ptr$<$ ns3\+::\+Socket $>$ \hyperlink{structrnl_1_1DroneSoc_aedfa903020617a408194c3a1b2bf8f22}{source\+\_\+bc}
+\item 
+ns3\+::\+Ptr$<$ ns3\+::\+Socket $>$ \hyperlink{structrnl_1_1DroneSoc_ab7620aceca921deff3b7e929bcf539a9}{recv\+\_\+sink}
+\item 
+int \hyperlink{structrnl_1_1DroneSoc_a1e6c71ed4e33fedcf54e7d1dd28657df}{id}
+\item 
+int \hyperlink{structrnl_1_1DroneSoc_a4d79451257929fcbaa69092b40af3077}{anch\+\_\+id}
+\item 
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a3c7d1e51b1e69f01ad7835aaeea11178}\label{structrnl_1_1DroneSoc_a3c7d1e51b1e69f01ad7835aaeea11178}} 
+int {\bfseries circle\+\_\+dir}
+\item 
+ns3\+::\+Vector3D \hyperlink{structrnl_1_1DroneSoc_a53076839aa6e66664611d82d848d864b}{anch\+\_\+pos}
+\item 
+\hyperlink{structrnl_1_1USMsg}{rnl\+::\+U\+S\+Msg} \hyperlink{structrnl_1_1DroneSoc_afc38c88754777ceef7195a4eacb870b9}{msg\+\_\+send}
+\item 
+\hyperlink{structrnl_1_1URMsg}{rnl\+::\+U\+R\+Msg} \hyperlink{structrnl_1_1DroneSoc_abc05fd0c4b80eb3bb6561c6b3d030797}{msg\+\_\+rec}
+\item 
+\hyperlink{structrnl_1_1Nbt}{rnl\+::\+Nbt} \hyperlink{structrnl_1_1DroneSoc_ae8065f9f2549546f32f8afdd4417dc58}{nbt}
+\item 
+std\+::vector$<$ ns3\+::\+Vector3D $>$ \hyperlink{structrnl_1_1DroneSoc_af6f5003ab01dd213cfed46f595e68694}{wpts}
+\item 
+ns3\+::\+Vector3D \hyperlink{structrnl_1_1DroneSoc_acd4150016d89ea9846c2c735c75470a0}{pos}
+\item 
+int \hyperlink{structrnl_1_1DroneSoc_a83abdfd1bc5cedf1a4effe48918a49a2}{lookaheadindex}
+\item 
+int \hyperlink{structrnl_1_1DroneSoc_a0551bc4498f75645a7a0fed0c3d2fb00}{toggle\+\_\+bc}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Drone Socket common for planning and communication. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a4945013e829ed896e2ca82699e62e711}\label{structrnl_1_1DroneSoc_a4945013e829ed896e2ca82699e62e711}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!receive\+Packet@{receive\+Packet}}
+\index{receive\+Packet@{receive\+Packet}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{receive\+Packet()}{receivePacket()}}
+{\footnotesize\ttfamily void rnl\+::\+Drone\+Soc\+::receive\+Packet (\begin{DoxyParamCaption}\item[{ns3\+::\+Ptr$<$ ns3\+::\+Socket $>$}]{soc }\end{DoxyParamCaption})}
+
+
+
+Socket receiving callback. ~\newline
+This function will be called as an interrupt if something is received at the socket end. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em soc} & Socket at which the message will be received \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_ab6c91121d046bf9632c1353c30ffde73}\label{structrnl_1_1DroneSoc_ab6c91121d046bf9632c1353c30ffde73}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!send\+Bc\+Packet@{send\+Bc\+Packet}}
+\index{send\+Bc\+Packet@{send\+Bc\+Packet}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{send\+Bc\+Packet()}{sendBcPacket()}}
+{\footnotesize\ttfamily void rnl\+::\+Drone\+Soc\+::send\+Bc\+Packet (\begin{DoxyParamCaption}\item[{ns3\+::\+Time}]{pkt\+Interval,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Send a broadcast packet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pkt\+Interval} & Packet interval at which this needs to be called. ~\newline
+The packet will be called after n $\ast$ pkt\+Interval\\
+\hline
+{\em n} & number of nodes in the swarm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a21ec1cbe2adaefffc5f4472a59b07d6f}\label{structrnl_1_1DroneSoc_a21ec1cbe2adaefffc5f4472a59b07d6f}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!send\+Packet@{send\+Packet}}
+\index{send\+Packet@{send\+Packet}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{send\+Packet()}{sendPacket()}}
+{\footnotesize\ttfamily void rnl\+::\+Drone\+Soc\+::send\+Packet (\begin{DoxyParamCaption}\item[{ns3\+::\+Time}]{pkt\+Interval,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+send Packet after every pkt\+Interval. ~\newline
+ This registers a callback which is periodically called 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pkt\+Interval} & Packet interval at which this needs to be called. ~\newline
+The packet will be called after n $\ast$ pkt\+Interval\\
+\hline
+{\em n} & number of nodes in the swarm \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_ace69ee9fbd96e334a32fb5d499c70588}\label{structrnl_1_1DroneSoc_ace69ee9fbd96e334a32fb5d499c70588}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!set\+Bc\+Sender@{set\+Bc\+Sender}}
+\index{set\+Bc\+Sender@{set\+Bc\+Sender}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{set\+Bc\+Sender()}{setBcSender()}}
+{\footnotesize\ttfamily void rnl\+::\+Drone\+Soc\+::set\+Bc\+Sender (\begin{DoxyParamCaption}\item[{ns3\+::\+Ptr$<$ ns3\+::\+Node $>$}]{node,  }\item[{ns3\+::\+Type\+Id}]{tid }\end{DoxyParamCaption})}
+
+
+
+Setup the node for broadcasting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Node to setup broadcasting for \\
+\hline
+{\em tid} & Type id \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a79565f4fa767a87e45e400e1ab0b03f8}\label{structrnl_1_1DroneSoc_a79565f4fa767a87e45e400e1ab0b03f8}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!set\+Sender@{set\+Sender}}
+\index{set\+Sender@{set\+Sender}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{set\+Sender()}{setSender()}}
+{\footnotesize\ttfamily void rnl\+::\+Drone\+Soc\+::set\+Sender (\begin{DoxyParamCaption}\item[{ns3\+::\+Ptr$<$ ns3\+::\+Node $>$}]{node,  }\item[{ns3\+::\+Type\+Id}]{tid,  }\item[{const std\+::string \&}]{ip }\end{DoxyParamCaption})}
+
+
+
+Initialize the sender. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & node \\
+\hline
+{\em tid} & type id \\
+\hline
+{\em ip} & IP of the sending socket \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structrnl_1_1DroneSoc_a4d79451257929fcbaa69092b40af3077}\label{structrnl_1_1DroneSoc_a4d79451257929fcbaa69092b40af3077}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!anch\+\_\+id@{anch\+\_\+id}}
+\index{anch\+\_\+id@{anch\+\_\+id}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{anch\+\_\+id}{anch\_id}}
+{\footnotesize\ttfamily int rnl\+::\+Drone\+Soc\+::anch\+\_\+id}
+
+Anchoring Id if any \mbox{\Hypertarget{structrnl_1_1DroneSoc_a53076839aa6e66664611d82d848d864b}\label{structrnl_1_1DroneSoc_a53076839aa6e66664611d82d848d864b}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!anch\+\_\+pos@{anch\+\_\+pos}}
+\index{anch\+\_\+pos@{anch\+\_\+pos}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{anch\+\_\+pos}{anch\_pos}}
+{\footnotesize\ttfamily ns3\+::\+Vector3D rnl\+::\+Drone\+Soc\+::anch\+\_\+pos}
+
+Circling direction Anchoring position \mbox{\Hypertarget{structrnl_1_1DroneSoc_a1e6c71ed4e33fedcf54e7d1dd28657df}\label{structrnl_1_1DroneSoc_a1e6c71ed4e33fedcf54e7d1dd28657df}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!id@{id}}
+\index{id@{id}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily int rnl\+::\+Drone\+Soc\+::id}
+
+Id of this drone soc \mbox{\Hypertarget{structrnl_1_1DroneSoc_a83abdfd1bc5cedf1a4effe48918a49a2}\label{structrnl_1_1DroneSoc_a83abdfd1bc5cedf1a4effe48918a49a2}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!lookaheadindex@{lookaheadindex}}
+\index{lookaheadindex@{lookaheadindex}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{lookaheadindex}{lookaheadindex}}
+{\footnotesize\ttfamily int rnl\+::\+Drone\+Soc\+::lookaheadindex}
+
+Look ahead index for the drone \mbox{\Hypertarget{structrnl_1_1DroneSoc_abc05fd0c4b80eb3bb6561c6b3d030797}\label{structrnl_1_1DroneSoc_abc05fd0c4b80eb3bb6561c6b3d030797}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!msg\+\_\+rec@{msg\+\_\+rec}}
+\index{msg\+\_\+rec@{msg\+\_\+rec}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{msg\+\_\+rec}{msg\_rec}}
+{\footnotesize\ttfamily \hyperlink{structrnl_1_1URMsg}{rnl\+::\+U\+R\+Msg} rnl\+::\+Drone\+Soc\+::msg\+\_\+rec}
+
+Message received \mbox{\Hypertarget{structrnl_1_1DroneSoc_afc38c88754777ceef7195a4eacb870b9}\label{structrnl_1_1DroneSoc_afc38c88754777ceef7195a4eacb870b9}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!msg\+\_\+send@{msg\+\_\+send}}
+\index{msg\+\_\+send@{msg\+\_\+send}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{msg\+\_\+send}{msg\_send}}
+{\footnotesize\ttfamily \hyperlink{structrnl_1_1USMsg}{rnl\+::\+U\+S\+Msg} rnl\+::\+Drone\+Soc\+::msg\+\_\+send}
+
+message to send \mbox{\Hypertarget{structrnl_1_1DroneSoc_ae8065f9f2549546f32f8afdd4417dc58}\label{structrnl_1_1DroneSoc_ae8065f9f2549546f32f8afdd4417dc58}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!nbt@{nbt}}
+\index{nbt@{nbt}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{nbt}{nbt}}
+{\footnotesize\ttfamily \hyperlink{structrnl_1_1Nbt}{rnl\+::\+Nbt} rnl\+::\+Drone\+Soc\+::nbt}
+
+Neighbout table \mbox{\Hypertarget{structrnl_1_1DroneSoc_acd4150016d89ea9846c2c735c75470a0}\label{structrnl_1_1DroneSoc_acd4150016d89ea9846c2c735c75470a0}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!pos@{pos}}
+\index{pos@{pos}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily ns3\+::\+Vector3D rnl\+::\+Drone\+Soc\+::pos}
+
+Current position of the drone \mbox{\Hypertarget{structrnl_1_1DroneSoc_ab7620aceca921deff3b7e929bcf539a9}\label{structrnl_1_1DroneSoc_ab7620aceca921deff3b7e929bcf539a9}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!recv\+\_\+sink@{recv\+\_\+sink}}
+\index{recv\+\_\+sink@{recv\+\_\+sink}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{recv\+\_\+sink}{recv\_sink}}
+{\footnotesize\ttfamily ns3\+::\+Ptr$<$ns3\+::\+Socket$>$ rnl\+::\+Drone\+Soc\+::recv\+\_\+sink}
+
+Receiving sink socket \mbox{\Hypertarget{structrnl_1_1DroneSoc_a1d4ae61d59f86c1efe46ca221711f07e}\label{structrnl_1_1DroneSoc_a1d4ae61d59f86c1efe46ca221711f07e}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!source@{source}}
+\index{source@{source}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{source}{source}}
+{\footnotesize\ttfamily ns3\+::\+Ptr$<$ns3\+::\+Socket$>$ rnl\+::\+Drone\+Soc\+::source}
+
+Socket for sending unicast messages \mbox{\Hypertarget{structrnl_1_1DroneSoc_aedfa903020617a408194c3a1b2bf8f22}\label{structrnl_1_1DroneSoc_aedfa903020617a408194c3a1b2bf8f22}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!source\+\_\+bc@{source\+\_\+bc}}
+\index{source\+\_\+bc@{source\+\_\+bc}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{source\+\_\+bc}{source\_bc}}
+{\footnotesize\ttfamily ns3\+::\+Ptr$<$ns3\+::\+Socket$>$ rnl\+::\+Drone\+Soc\+::source\+\_\+bc}
+
+Socket for sending broadcast messaged \mbox{\Hypertarget{structrnl_1_1DroneSoc_a0551bc4498f75645a7a0fed0c3d2fb00}\label{structrnl_1_1DroneSoc_a0551bc4498f75645a7a0fed0c3d2fb00}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!toggle\+\_\+bc@{toggle\+\_\+bc}}
+\index{toggle\+\_\+bc@{toggle\+\_\+bc}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{toggle\+\_\+bc}{toggle\_bc}}
+{\footnotesize\ttfamily int rnl\+::\+Drone\+Soc\+::toggle\+\_\+bc}
+
+toggle broadcast on \mbox{\Hypertarget{structrnl_1_1DroneSoc_af6f5003ab01dd213cfed46f595e68694}\label{structrnl_1_1DroneSoc_af6f5003ab01dd213cfed46f595e68694}} 
+\index{rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}!wpts@{wpts}}
+\index{wpts@{wpts}!rnl\+::\+Drone\+Soc@{rnl\+::\+Drone\+Soc}}
+\subsubsection{\texorpdfstring{wpts}{wpts}}
+{\footnotesize\ttfamily std\+::vector$<$ns3\+::\+Vector3D$>$ rnl\+::\+Drone\+Soc\+::wpts}
+
+Waypoints that drone needs to follow 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{planner__ns3_8h}{planner\+\_\+ns3.\+h}\item 
+src/planner\+\_\+ns3.\+cc\end{DoxyCompactItemize}

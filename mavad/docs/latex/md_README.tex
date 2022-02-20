@@ -1,0 +1,28 @@
+\subsection*{Prerequisites\+:}
+
+\subsubsection*{Follow the documentation for guidelines}
+
+\subsection*{-\/ Install N\+S3 using Cmake from the following \href{https://github.com/Gabrielcarvfer/NS3}{\tt link} }
+
+\#\# Steps\+: 
+\begin{DoxyCode}
+cd NS3 #The ns3 folder cloned in first installation guide
+git clone https://github.com/ojitmehta123/mavad.git
+\end{DoxyCode}
+ \#\#\# 1. Add the following in the C\+Make\+Lists.\+txt in N\+S3 folder\+: 
+\begin{DoxyCode}
+#Build mavad scripts
+add\_subdirectory(mavad)
+\end{DoxyCode}
+ \#\#\# 2. Edit the following\+: 
+\begin{DoxyCode}
+option(NS3\_EMU "Build with emu support" ON)
+set(NS3\_EMU ON)
+\end{DoxyCode}
+
+
+\subsubsection*{3. Also examples, utils folder can be commented as they are not necessary to be built.}
+
+\subsubsection*{4. Now build the scripts.}
+
+\subsection*{\#\#\# 5. Run the Executable mavad\+\_\+main in the build/bin folder }

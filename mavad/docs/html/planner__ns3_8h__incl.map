@@ -1,0 +1,4 @@
+<map id="include/planner_ns3.h" name="include/planner_ns3.h">
+<area shape="rect" id="node2" href="$planner__config_8h.html" title="Configuration file for setting the serializing &amp; parsing of ns3 data to other formats. Contains the datatype for data encoding &amp; decoding and other static data variables. " alt="" coords="539,87,656,114"/>
+<area shape="rect" id="node15" href="$planner__ns3__utils_8h.html" title="Utility functions for Swarm Planner. " alt="" coords="681,87,815,114"/>
+</map>

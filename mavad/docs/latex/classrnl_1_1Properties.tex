@@ -1,0 +1,123 @@
+\hypertarget{classrnl_1_1Properties}{}\section{rnl\+:\+:Properties Class Reference}
+\label{classrnl_1_1Properties}\index{rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classrnl_1_1Properties_a8d5bb9a2f865134ce365d2145b15b617}{Properties} (std\+::string \+\_\+phy\+Mode, double \+\_\+rss, int \+\_\+num\+\_\+nodes)
+\begin{DoxyCompactList}\small\item\em Construct a new \hyperlink{classrnl_1_1Properties}{Properties} object. \end{DoxyCompactList}\item 
+void \hyperlink{classrnl_1_1Properties_aa6d0d94382d776c5752648c3429a03b1}{initialize} (bool realtime, bool checksum)
+\begin{DoxyCompactList}\small\item\em For Realtime simulation set realtime and checksum. \end{DoxyCompactList}\item 
+void \hyperlink{classrnl_1_1Properties_a7d9a1bba88439c985d9ea336b73f4b03}{set\+Wifi} (bool verb, bool pcap\+\_\+enable)
+\begin{DoxyCompactList}\small\item\em Set the Wifi object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrnl_1_1Properties_a8152430f378c949b321c9e541ff0aad8}\label{classrnl_1_1Properties_a8152430f378c949b321c9e541ff0aad8}} 
+void \hyperlink{classrnl_1_1Properties_a8152430f378c949b321c9e541ff0aad8}{set\+Internet} ()
+\begin{DoxyCompactList}\small\item\em Set the Internet. \end{DoxyCompactList}\item 
+ns3\+::\+Type\+Id \hyperlink{classrnl_1_1Properties_ae2a22e3a35a82d24e02e6d653bcdb330}{tid\+\_\+val} () const
+\begin{DoxyCompactList}\small\item\em Get type id value. \end{DoxyCompactList}\item 
+ns3\+::\+Type\+Id \& \hyperlink{classrnl_1_1Properties_a2b715725840eadd5d40046a78a559803}{tid\+\_\+val} ()
+\begin{DoxyCompactList}\small\item\em Set type id value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ns3\+::\+Node\+Container \hyperlink{classrnl_1_1Properties_ad0aa4a664efa0af4070bc63394395c1d}{c}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classrnl_1_1Properties_a8d5bb9a2f865134ce365d2145b15b617}\label{classrnl_1_1Properties_a8d5bb9a2f865134ce365d2145b15b617}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!Properties@{Properties}}
+\index{Properties@{Properties}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{Properties()}{Properties()}}
+{\footnotesize\ttfamily rnl\+::\+Properties\+::\+Properties (\begin{DoxyParamCaption}\item[{std\+::string}]{\+\_\+phy\+Mode = {\ttfamily \char`\"{}DsssRate1Mbps\char`\"{}},  }\item[{double}]{\+\_\+rss = {\ttfamily -\/80},  }\item[{int}]{\+\_\+num\+\_\+nodes = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+
+
+Construct a new \hyperlink{classrnl_1_1Properties}{Properties} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+phy\+Mode} & Physical layer mode \\
+\hline
+{\em \+\_\+rss} & Deprecated \\
+\hline
+{\em \+\_\+num\+\_\+nodes} & Number of nodes in the swarm \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classrnl_1_1Properties_aa6d0d94382d776c5752648c3429a03b1}\label{classrnl_1_1Properties_aa6d0d94382d776c5752648c3429a03b1}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!initialize@{initialize}}
+\index{initialize@{initialize}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void rnl\+::\+Properties\+::initialize (\begin{DoxyParamCaption}\item[{bool}]{realtime,  }\item[{bool}]{checksum }\end{DoxyParamCaption})}
+
+
+
+For Realtime simulation set realtime and checksum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em realtime} & Simulation will run realtime \\
+\hline
+{\em checksum} & Checksum is required for setting data checks \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrnl_1_1Properties_a7d9a1bba88439c985d9ea336b73f4b03}\label{classrnl_1_1Properties_a7d9a1bba88439c985d9ea336b73f4b03}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!set\+Wifi@{set\+Wifi}}
+\index{set\+Wifi@{set\+Wifi}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{set\+Wifi()}{setWifi()}}
+{\footnotesize\ttfamily void rnl\+::\+Properties\+::set\+Wifi (\begin{DoxyParamCaption}\item[{bool}]{verb,  }\item[{bool}]{pcap\+\_\+enable }\end{DoxyParamCaption})}
+
+
+
+Set the Wifi object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em verb} & If verbose required \\
+\hline
+{\em pcap\+\_\+enable} & If pcap is enabled \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrnl_1_1Properties_ae2a22e3a35a82d24e02e6d653bcdb330}\label{classrnl_1_1Properties_ae2a22e3a35a82d24e02e6d653bcdb330}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!tid\+\_\+val@{tid\+\_\+val}}
+\index{tid\+\_\+val@{tid\+\_\+val}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{tid\+\_\+val()}{tid\_val()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ns3\+::\+Type\+Id rnl\+::\+Properties\+::tid\+\_\+val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get type id value. 
+
+\begin{DoxyReturn}{Returns}
+ns3\+::\+Type\+Id 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrnl_1_1Properties_a2b715725840eadd5d40046a78a559803}\label{classrnl_1_1Properties_a2b715725840eadd5d40046a78a559803}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!tid\+\_\+val@{tid\+\_\+val}}
+\index{tid\+\_\+val@{tid\+\_\+val}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{tid\+\_\+val()}{tid\_val()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ns3\+::\+Type\+Id \& rnl\+::\+Properties\+::tid\+\_\+val (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set type id value. 
+
+\begin{DoxyReturn}{Returns}
+ns3\+::\+Type\+Id\& 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classrnl_1_1Properties_ad0aa4a664efa0af4070bc63394395c1d}\label{classrnl_1_1Properties_ad0aa4a664efa0af4070bc63394395c1d}} 
+\index{rnl\+::\+Properties@{rnl\+::\+Properties}!c@{c}}
+\index{c@{c}!rnl\+::\+Properties@{rnl\+::\+Properties}}
+\subsubsection{\texorpdfstring{c}{c}}
+{\footnotesize\ttfamily ns3\+::\+Node\+Container rnl\+::\+Properties\+::c}
+
+Node container containing all the ns3 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{planner__ns3_8h}{planner\+\_\+ns3.\+h}\item 
+src/planner\+\_\+ns3.\+cc\end{DoxyCompactItemize}

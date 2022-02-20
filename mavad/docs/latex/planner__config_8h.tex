@@ -1,0 +1,255 @@
+\hypertarget{planner__config_8h}{}\section{include/planner\+\_\+config.h File Reference}
+\label{planner__config_8h}\index{include/planner\+\_\+config.\+h@{include/planner\+\_\+config.\+h}}
+
+
+Configuration file for setting the serializing \& parsing of ns3 data to other formats. Contains the datatype for data encoding \& decoding and other static data variables.  
+
+
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$eigen3/\+Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include \char`\"{}ns3/command-\/line.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ns3/config.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ns3/double.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ns3/string.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ns3/log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ns3/netanim-\/module.\+h\char`\"{}}\newline
+Include dependency graph for planner\+\_\+config.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{planner__config_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{planner__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structrnl_1_1Nbt}{rnl\+::\+Nbt}
+\begin{DoxyCompactList}\small\item\em For parsing and serializing data of neighbouring nodes. \end{DoxyCompactList}\item 
+struct \hyperlink{structrnl_1_1USMsg}{rnl\+::\+U\+S\+Msg}
+\begin{DoxyCompactList}\small\item\em This Structure Will be Serialized and sent as Unicast Message. The ~\newline
+communication will have this format. Each drone sends ~\newline
+Unicast Message in this format. The serializer will make a ~\newline
+delimiter seperated string which will be passed onto the sockets ~\newline
+for transmission. ~\newline
+. \end{DoxyCompactList}\item 
+struct \hyperlink{structrnl_1_1URMsg}{rnl\+::\+U\+R\+Msg}
+\begin{DoxyCompactList}\small\item\em This Structure Will be parsed as a Unicast Message. The ~\newline
+communication will have this format. Each drone receives ~\newline
+Unicast Message in this format. The parser will convert ~\newline
+the received message into struct members. ~\newline
+. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1}{rnl\+::state} \{ \newline
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a685c2f7e7e26cde40654a6c1e250e77e}{rnl\+::\+S\+F\+I\+R\+E\+D\+ET} = 1, 
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1aa17489432550b74b4ef15b52a2ae62b6}{rnl\+::\+S\+O\+N\+L\+I\+NE} = 2, 
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1ae25aa39ab558f3d0c434a4730db6da69}{rnl\+::\+S\+A\+N\+C\+H\+O\+R\+I\+NG} = 4, 
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a1bc28766fabeea139725b605a6875847}{rnl\+::\+S\+L\+A\+N\+D\+U\+N\+A\+RM} = 8, 
+\newline
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a9f1612c2790d6547e2b4ed5dc588cdbd}{rnl\+::\+S\+G\+F\+I\+R\+E\+D\+ET} = 16, 
+\hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a76bfa4a4d798f385d4ed674c8d06d1c2}{rnl\+::\+S\+G\+D\+R\+O\+N\+E\+R\+EQ} = 32
+ \}
+\item 
+\mbox{\Hypertarget{planner__config_8h_ab381da0fa5692e394ced69fc7155486e}\label{planner__config_8h_ab381da0fa5692e394ced69fc7155486e}} 
+enum {\bfseries control} \{ \newline
+{\bfseries C\+L\+A\+N\+D\+U\+N\+A\+RM} = 1, 
+{\bfseries C\+H\+O\+L\+D\+RC} = 2, 
+{\bfseries C\+C\+H\+A\+N\+G\+E\+P\+AR} = 4, 
+{\bfseries C\+L\+T\+OP} = 8, 
+\newline
+{\bfseries C\+R\+T\+OP} = 16, 
+{\bfseries C\+A\+T\+OP} = 32, 
+{\bfseries C\+R\+ES} = 64
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{planner__config_8h_ab0985dce78c6ca4a58ae60725c0999b1}\label{planner__config_8h_ab0985dce78c6ca4a58ae60725c0999b1}} 
+static std\+::string {\bfseries rnl\+::\+D\+E\+L\+IM} = \char`\"{}\textbackslash{}n\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_a33c64a0043c93458fac36fe41a17aa8d}{rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP} = \char`\"{}$\vert$\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_a5aa5dac37bf587ab7a829ea362878baf}{rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS} = \char`\"{}.\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_a4c25161b0c28b01fef9be6ff225760d7}{rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS} = \char`\"{},\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_aaaa9f6bd2425ab763f939cd6e732fc7b}{rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP} = \char`\"{}$\sim$$\sim$\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_a341e92a73f6f1fc6a1b50a1d2ce02263}{rnl\+::\+D\+E\+L\+I\+M\+\_\+\+P\+OS} = \char`\"{}\+:\char`\"{}
+\item 
+static std\+::string \hyperlink{planner__config_8h_a65876a0479b37a1a0388205ac257c0d0}{rnl\+::\+I\+P\+\_\+\+B\+A\+SE} = \char`\"{}10.\+1.\+1.\char`\"{}
+\item 
+static int \hyperlink{planner__config_8h_adf0cba08baeee1c91aed8ea4db125cb2}{rnl\+::\+B\+A\+S\+E\+ID} = 50
+\item 
+static double \hyperlink{planner__config_8h_a07c857b1b38dd2525bef4652da745681}{rnl\+::\+S\+T\+EP} = 0.\+5
+\item 
+static double \hyperlink{planner__config_8h_a3b98891dcbe5a105fa7806c23597b295}{rnl\+::\+RC} = 30.\+0
+\item 
+static double \hyperlink{planner__config_8h_a03a389b87a6cb32f5fd383083a3cbcd6}{rnl\+::\+D\+T\+H\+E\+TA} = rnl\+::\+S\+T\+EP / rnl\+::\+RC
+\item 
+static double \hyperlink{planner__config_8h_a6b8eceb57d0c8d8142e3fa840cebbed9}{rnl\+::\+M\+A\+X\+T\+H\+R\+E\+S\+H\+RC} = 100.\+0
+\item 
+static double \hyperlink{planner__config_8h_a18ac368908261271d2045e987956e809}{rnl\+::\+M\+I\+N\+T\+H\+R\+E\+S\+H\+RC} = 3.\+0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration file for setting the serializing \& parsing of ns3 data to other formats. Contains the datatype for data encoding \& decoding and other static data variables. 
+
+\begin{DoxyAuthor}{Author}
+Ojit Mehta (\href{mailto:f20170372@goa.bits-pilani.ac.in}{\tt f20170372@goa.\+bits-\/pilani.\+ac.\+in}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2021-\/03-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2021 
+\end{DoxyCopyright}
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{planner__config_8h_file_abf2bd8ba1ccd0fa681ac5299ba19b5a1}\label{planner__config_8h_file_abf2bd8ba1ccd0fa681ac5299ba19b5a1}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!state@{state}}
+\index{state@{state}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily enum \hyperlink{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1}{rnl\+::state}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+F\+I\+R\+E\+D\+ET@{S\+F\+I\+R\+E\+D\+ET}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+F\+I\+R\+E\+D\+ET@{S\+F\+I\+R\+E\+D\+ET}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a685c2f7e7e26cde40654a6c1e250e77e}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a685c2f7e7e26cde40654a6c1e250e77e}} 
+S\+F\+I\+R\+E\+D\+ET&\mbox{[}L\+O\+C\+AL S\+T\+A\+TE\mbox{]} State mentions fire detected by the system \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+O\+N\+L\+I\+NE@{S\+O\+N\+L\+I\+NE}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+O\+N\+L\+I\+NE@{S\+O\+N\+L\+I\+NE}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1aa17489432550b74b4ef15b52a2ae62b6}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1aa17489432550b74b4ef15b52a2ae62b6}} 
+S\+O\+N\+L\+I\+NE&\mbox{[}L\+O\+C\+AL S\+T\+A\+TE\mbox{]} Node is active \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+A\+N\+C\+H\+O\+R\+I\+NG@{S\+A\+N\+C\+H\+O\+R\+I\+NG}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+A\+N\+C\+H\+O\+R\+I\+NG@{S\+A\+N\+C\+H\+O\+R\+I\+NG}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1ae25aa39ab558f3d0c434a4730db6da69}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1ae25aa39ab558f3d0c434a4730db6da69}} 
+S\+A\+N\+C\+H\+O\+R\+I\+NG&\mbox{[}L\+O\+C\+AL S\+T\+A\+TE\mbox{]} Node is anchoring a node \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+L\+A\+N\+D\+U\+N\+A\+RM@{S\+L\+A\+N\+D\+U\+N\+A\+RM}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+L\+A\+N\+D\+U\+N\+A\+RM@{S\+L\+A\+N\+D\+U\+N\+A\+RM}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a1bc28766fabeea139725b605a6875847}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a1bc28766fabeea139725b605a6875847}} 
+S\+L\+A\+N\+D\+U\+N\+A\+RM&\mbox{[}L\+O\+C\+AL S\+T\+A\+TE\mbox{]} Node is inactive \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+G\+F\+I\+R\+E\+D\+ET@{S\+G\+F\+I\+R\+E\+D\+ET}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+G\+F\+I\+R\+E\+D\+ET@{S\+G\+F\+I\+R\+E\+D\+ET}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a9f1612c2790d6547e2b4ed5dc588cdbd}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a9f1612c2790d6547e2b4ed5dc588cdbd}} 
+S\+G\+F\+I\+R\+E\+D\+ET&\mbox{[}G\+L\+O\+B\+AL S\+T\+A\+TE\mbox{]} Swarm has detected fire \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+G\+D\+R\+O\+N\+E\+R\+EQ@{S\+G\+D\+R\+O\+N\+E\+R\+EQ}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+G\+D\+R\+O\+N\+E\+R\+EQ@{S\+G\+D\+R\+O\+N\+E\+R\+EQ}}}\mbox{\Hypertarget{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a76bfa4a4d798f385d4ed674c8d06d1c2}\label{planner__config_8h_abf2bd8ba1ccd0fa681ac5299ba19b5a1a76bfa4a4d798f385d4ed674c8d06d1c2}} 
+S\+G\+D\+R\+O\+N\+E\+R\+EQ&\mbox{[}G\+L\+O\+B\+AL S\+T\+A\+TE\mbox{]} Swarm asking for more drones \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{planner__config_8h_file_adf0cba08baeee1c91aed8ea4db125cb2}\label{planner__config_8h_file_adf0cba08baeee1c91aed8ea4db125cb2}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!B\+A\+S\+E\+ID@{B\+A\+S\+E\+ID}}
+\index{B\+A\+S\+E\+ID@{B\+A\+S\+E\+ID}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{B\+A\+S\+E\+ID}{BASEID}}
+{\footnotesize\ttfamily int rnl\+::\+B\+A\+S\+E\+ID = 50\hspace{0.3cm}{\ttfamily [static]}}
+
+IP Base \mbox{\Hypertarget{planner__config_8h_file_a33c64a0043c93458fac36fe41a17aa8d}\label{planner__config_8h_file_a33c64a0043c93458fac36fe41a17aa8d}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP}}
+\index{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP}{DELIM\_NBTHOP}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+H\+OP = \char`\"{}$\vert$\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter used for serializing message to stringstream \begin{DoxySeeAlso}{See also}
+\hyperlink{structrnl_1_1USMsg_ad940de5a03b2ad545557cf202591df5c}{rnl\+::\+U\+S\+Msg\+::serialize()} 
+
+U\+R\+Msg\+::serialize() 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_a4c25161b0c28b01fef9be6ff225760d7}\label{planner__config_8h_file_a4c25161b0c28b01fef9be6ff225760d7}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS}}
+\index{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS}{DELIM\_NBTID\_POS}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+I\+D\+\_\+\+P\+OS = \char`\"{},\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter for specifiying neighbouring hops \begin{DoxySeeAlso}{See also}
+Nbt\+::serialize 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_aaaa9f6bd2425ab763f939cd6e732fc7b}\label{planner__config_8h_file_aaaa9f6bd2425ab763f939cd6e732fc7b}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP}}
+\index{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP}{DELIM\_NBTMHOP}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+M\+H\+OP = \char`\"{}$\sim$$\sim$\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter for specifiying neighbouring hops \begin{DoxySeeAlso}{See also}
+Nbt\+::serialize 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_a5aa5dac37bf587ab7a829ea362878baf}\label{planner__config_8h_file_a5aa5dac37bf587ab7a829ea362878baf}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS}}
+\index{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS}{DELIM\_NBTPOS}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+D\+E\+L\+I\+M\+\_\+\+N\+B\+T\+P\+OS = \char`\"{}.\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter for specifiying neighbouring hops \begin{DoxySeeAlso}{See also}
+Nbt\+::serialize 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_a341e92a73f6f1fc6a1b50a1d2ce02263}\label{planner__config_8h_file_a341e92a73f6f1fc6a1b50a1d2ce02263}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+E\+L\+I\+M\+\_\+\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+P\+OS}}
+\index{D\+E\+L\+I\+M\+\_\+\+P\+OS@{D\+E\+L\+I\+M\+\_\+\+P\+OS}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+L\+I\+M\+\_\+\+P\+OS}{DELIM\_POS}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+D\+E\+L\+I\+M\+\_\+\+P\+OS = \char`\"{}\+:\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter seperating neighbours based on hop count \begin{DoxySeeAlso}{See also}
+Nbt\+::serialize 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_a03a389b87a6cb32f5fd383083a3cbcd6}\label{planner__config_8h_file_a03a389b87a6cb32f5fd383083a3cbcd6}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!D\+T\+H\+E\+TA@{D\+T\+H\+E\+TA}}
+\index{D\+T\+H\+E\+TA@{D\+T\+H\+E\+TA}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{D\+T\+H\+E\+TA}{DTHETA}}
+{\footnotesize\ttfamily double rnl\+::\+D\+T\+H\+E\+TA = rnl\+::\+S\+T\+EP / rnl\+::\+RC\hspace{0.3cm}{\ttfamily [static]}}
+
+RC Distance as specified in the paper. Ideal distance of seperation between two nodes \mbox{\Hypertarget{planner__config_8h_file_a65876a0479b37a1a0388205ac257c0d0}\label{planner__config_8h_file_a65876a0479b37a1a0388205ac257c0d0}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!I\+P\+\_\+\+B\+A\+SE@{I\+P\+\_\+\+B\+A\+SE}}
+\index{I\+P\+\_\+\+B\+A\+SE@{I\+P\+\_\+\+B\+A\+SE}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{I\+P\+\_\+\+B\+A\+SE}{IP\_BASE}}
+{\footnotesize\ttfamily std\+::string rnl\+::\+I\+P\+\_\+\+B\+A\+SE = \char`\"{}10.\+1.\+1.\char`\"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+Delimiter seperating coordinate value of robot pose \begin{DoxySeeAlso}{See also}
+U\+R\+Msg\+::parse\+Unicast 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{planner__config_8h_file_a6b8eceb57d0c8d8142e3fa840cebbed9}\label{planner__config_8h_file_a6b8eceb57d0c8d8142e3fa840cebbed9}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!M\+A\+X\+T\+H\+R\+E\+S\+H\+RC@{M\+A\+X\+T\+H\+R\+E\+S\+H\+RC}}
+\index{M\+A\+X\+T\+H\+R\+E\+S\+H\+RC@{M\+A\+X\+T\+H\+R\+E\+S\+H\+RC}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+X\+T\+H\+R\+E\+S\+H\+RC}{MAXTHRESHRC}}
+{\footnotesize\ttfamily double rnl\+::\+M\+A\+X\+T\+H\+R\+E\+S\+H\+RC = 100.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+Max dtheta that a drone can undertake at a particular time \mbox{\Hypertarget{planner__config_8h_file_a18ac368908261271d2045e987956e809}\label{planner__config_8h_file_a18ac368908261271d2045e987956e809}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!M\+I\+N\+T\+H\+R\+E\+S\+H\+RC@{M\+I\+N\+T\+H\+R\+E\+S\+H\+RC}}
+\index{M\+I\+N\+T\+H\+R\+E\+S\+H\+RC@{M\+I\+N\+T\+H\+R\+E\+S\+H\+RC}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{M\+I\+N\+T\+H\+R\+E\+S\+H\+RC}{MINTHRESHRC}}
+{\footnotesize\ttfamily double rnl\+::\+M\+I\+N\+T\+H\+R\+E\+S\+H\+RC = 3.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+Maximum RC threshold for 2 nodes to communicate \mbox{\Hypertarget{planner__config_8h_file_a3b98891dcbe5a105fa7806c23597b295}\label{planner__config_8h_file_a3b98891dcbe5a105fa7806c23597b295}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!RC@{RC}}
+\index{RC@{RC}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{RC}{RC}}
+{\footnotesize\ttfamily double rnl\+::\+RC = 30.\+0\hspace{0.3cm}{\ttfamily [static]}}
+
+Step Size for discretizing \mbox{\Hypertarget{planner__config_8h_file_a07c857b1b38dd2525bef4652da745681}\label{planner__config_8h_file_a07c857b1b38dd2525bef4652da745681}} 
+\index{planner\+\_\+config.\+h@{planner\+\_\+config.\+h}!S\+T\+EP@{S\+T\+EP}}
+\index{S\+T\+EP@{S\+T\+EP}!planner\+\_\+config.\+h@{planner\+\_\+config.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+EP}{STEP}}
+{\footnotesize\ttfamily double rnl\+::\+S\+T\+EP = 0.\+5\hspace{0.3cm}{\ttfamily [static]}}
+
+Base Station IP Address 
