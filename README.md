@@ -1,5 +1,8 @@
 # Meta repository for the Airborne Network project at BITS-PILANI, K K Birla Goa Campus.
 
+## Branches
+* **main**
+* **no_ros**
 
 ## Contributors
 * [Sarang Dhongdi](https://github.com/Sarang-BITS)
@@ -9,6 +12,7 @@
 * [Vishal Singh](https://www.github.com/vishalbhsc)
 * [Shambhavi Singh](https://www.github.com/28shambhavi)
 * [Aditya Bidwai](https://www.github.com/adbidwai)
+
 
 Master branch has Co-simulator code.
 no_ros branch has NS3 only version of the code.
