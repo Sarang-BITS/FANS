@@ -1,4 +1,4 @@
-# Meta repository for the Airborne Network project at BITS-PILANI, K K Birla Goa Campus.
+# FANS : Flying Ad-hoc Network Simulator
 
 ## Branches
 * **main** : Contains the entire co-simulator setup which integrates NS3 (networking) and PX4-SITL in Gazebo (robot simulator)
