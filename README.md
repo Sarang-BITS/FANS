@@ -1,7 +1,7 @@
 # FANS : Flying Ad-hoc Network Simulator (main branch)
 
 ## Content Description
-* [mavad](https://github.com/Sarang-BITS/airborne_networks/tree/main/mavad) : Networking + Planning stack of the cosimulator codebase
+* [mavad](https://github.com/Sarang-BITS/airborne_networks/tree/main/mavad) : Networking + Planning stack of the co-simulator codebase
 * [pci](https://github.com/Sarang-BITS/airborne_networks/tree/main/pci) : (Planner - Control Interface) Interface between **mavad** and **MAVROS** to further connect to PX4-SITL in Gazebo
 
 ## Setup and demo
