@@ -160,13 +160,13 @@ d) `Validating` <br/>
 
 * Clone the cmake version of NS3 inside the `ns-3-allinone` folder
 ```
-cd ~/ns-3-allinone
+cd <path_to_ns-3-allinone_folder>
 git clone https://github.com/Gabrielcarvfer/NS3.git
 ```
 
 * Build the cmake version of NS3
 ```
-cd ~/ns-3-allinone/NS3
+cd <path_to_ns-3-allinone_folder>/NS3
 mkdir cmake-cache
 cd cmake-cache
 cmake -DCMAKE_BUILD_TYPE=DEBUG ..
