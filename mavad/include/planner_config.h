@@ -168,7 +168,7 @@ namespace rnl{
          * @param co control value to destination node
          * @param st my state 
          * @param p my parent index
-         * @param p my neighbour count
+         * @param neigh_count my neighbour count
          * @param _ploc my parent location
          */
         USMsg 
