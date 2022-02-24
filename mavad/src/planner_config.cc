@@ -38,7 +38,7 @@ rnl::USMsg::USMsg ()
     p_id   = -998;
     neigh_cnt = -998;
     p_loc  = ns3::Vector3D (-998,-998,-998);
-		bc_nbs = "";
+	bc_nbs = "";
 }
 
 rnl::URMsg::URMsg ()
@@ -51,7 +51,7 @@ rnl::URMsg::URMsg ()
     p_id   = -998;
     neigh_cnt = -998;
     p_loc  = ns3::Vector3D (-998,-998,-998);
-		bc_nbs = "";
+	bc_nbs = "";
 }
 
 void rnl::USMsg::serialize (std::string* loc)
@@ -91,7 +91,6 @@ void rnl::URMsg::parseBroadcast (std::string& msg)
   _tok          = msg.substr(0, msg.find(rnl::DELIM));
   _bc_nbs << _tok;
 	bc_nbs = _bc_nbs.str();
-	// std::cerr << "In rec parser " << bc_nbs << std::endl;
 }
 
 void rnl::URMsg::parseUnicast (std::string& msg)
@@ -176,7 +175,6 @@ void rnl::Nbt::parseSingleNb(std::string msg)
 {
 	if (msg.size())
 	{
-		// std::cerr << "Message Rec in Parser : " << msg <<std::endl;
 		std::string _tok;
 		/*Get BC ID*/
 		_tok = msg.substr (0, msg.find(rnl::DELIM));

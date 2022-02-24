@@ -100,10 +100,8 @@ namespace rnl {
             void receivePacket3(ns3::Ptr<ns3::Socket> socket3);
 
             /*Functions for Sending packets by ns3 node n as sendPacketn*/
-            void sendPacket1(ns3::Ptr<ns3::Socket> socket, uint32_t pktSize,
-                            ns3::Time pktInterval);
-            void sendPacket2(ns3::Ptr<ns3::Socket> socket, uint32_t pktSize,
-                            ns3::Time pktInterval);
+            void sendPacket1(ns3::Ptr<ns3::Socket> socket, uint32_t pktSize, ns3::Time pktInterval);
+            void sendPacket2(ns3::Ptr<ns3::Socket> socket, uint32_t pktSize, ns3::Time pktInterval);
             
             /*Simulation Setup. Start, Stop time*/
             void startSimul();
@@ -129,7 +127,6 @@ namespace rnl {
 
             // For using the mobility capbilities of NS3
             void setPosition(ns3::Ptr<ns3::Node> node, ns3::Vector position);
-            // void getPosition(Ptr<Node> node);
 
             
         private:
@@ -189,7 +186,5 @@ namespace rnl {
             ns3::Ptr<ns3::Socket> recv_sink1, recv_sink2, recv_sink3 = nullptr;
             
             ns3::Ptr<ns3::Socket> source1, source2 = nullptr;
-
     };
-
 };
