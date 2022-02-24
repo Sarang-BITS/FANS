@@ -16,6 +16,11 @@
 * [Vishal Singh](https://www.github.com/vishalbhsc)
 * [Shambhavi Singh](https://www.github.com/28shambhavi)
 * [Aditya Bidwai](https://www.github.com/adbidwai)
+* 
+
+## Acknowledgement
+We would like to extend our special thanks of gratitude to [Dr. Mohit P. Tahiliani](https://github.com/mohittahiliani) for his valuable guidance throughout the course of this project
+
 
 ## Branches
 * **main** : Contains the entire co-simulator setup which integrates NS3 (networking) and PX4-SITL in Gazebo (robot simulator)
