@@ -1,13 +1,7 @@
 /**
- * @file planner_config.h
- * @author Ojit Mehta (f20170372@goa.bits-pilani.ac.in)
  * @brief Configuration file for setting the serializing & parsing of ns3 data
  * to other formats. Contains the datatype for data encoding & decoding and other
  * static data variables.
- * @version 0.1
- * @date 2021-03-29
- * 
- * @copyright Copyright (c) 2021
  * 
  */
 #pragma once
@@ -39,11 +33,7 @@ namespace rnl{
     static std::string IP_BASE         = "10.1.1."; /** IP Base*/
     static int         BASEID          = 50; /** Base Station IP Address */
     static double      STEP            = 0.5; /** Step Size for discretizing */
-    // static double      RC              = 30.0; /** RC Distance as specified in the paper. Ideal distance of seperation between two nodes */
     static double      RC              = 50.0; /** RC Distance as specified in the paper. Ideal distance of seperation between two nodes */
-    static double      DTHETA          = rnl::STEP / rnl::RC; /** Max dtheta that a drone can undertake at a particular time */ 
-    static double      MAXTHRESHRC     = 80.0; /** Maximum RC threshold for 2 nodes to communicate */
-    static double      MINTHRESHRC     = 3.0; /** Minimum RC distance to avoid collision */
 
 
     /**
@@ -53,13 +43,6 @@ namespace rnl{
      */
     enum state
     {
-        // SFIREDET       = 1, /**< [LOCAL STATE] State mentions fire detected by the system */
-        // SONLINE        = 2, /**< [LOCAL STATE] Node is active */
-        // SANCHORING     = 4, /**< [LOCAL STATE] Node is anchoring a node */ 
-        // SLANDUNARM     = 8, /**< [LOCAL STATE] Node is inactive */
-        // SGFIREDET      = 16, /**< [GLOBAL STATE] Swarm has detected fire */
-        // SGDRONEREQ     = 32, /**< [GLOBAL STATE] Swarm asking for more drones */
-
         SSITEREACHED    = 1,    // SITE REACHED
         SONLINE         = 2,    // ON STRAIGHT LINE
         SANCHORING      = 4,    // ANCHORING
@@ -68,7 +51,7 @@ namespace rnl{
         SCENTRE         = 32,   // CENTRE NEIGHBOUR
         SGSITEREACHED   = 64,   // [GLOBAL] SITE REACHED
         SGDRONEREQ      = 128,  // [GLOBAL] DRONE REQUIRED (LESS THAN 9 DRONES OVER SITE)
-        SLAWNMOVERING   = 256
+        SLAWNMOVERING   = 256   // LAWNMOVERING
     };
 
     /**
@@ -78,13 +61,6 @@ namespace rnl{
      */
     enum control
     {
-        // CLANDUNARM     = 1,
-        // CHOLDRC        = 2,
-        // CCHANGEPAR     = 4,
-        // CLTOP          = 8,
-        // CRTOP          = 16,
-        // CATOP          = 32,
-        // CRES          = 64
         CHOLDRC         = 1,    // HOLD RC DISTANCE FROM PARENT
         CCHANGEPAR      = 2,    // CHANGE PARENT
         CLTOP           = 4,    // GO LEFT TOWARDS PARENT
@@ -140,29 +116,29 @@ namespace rnl{
                           (.. | ID(int), hop(int), pos(ns3::Vector) | ..) \n 
                           hop - 1,2,3 ...  \n
                           pos - x (float) : y (float) : z (float) \n
-    * * control           - This is a bit field which consists of all possible \n
+    * * control (int)   - This is a bit field which consists of all possible \n
                           control commands a particular drone can give. \n
-                          1   -> Drone Should Unarm and Land \n
-                          2   -> Drone Should Hold Pos at RC from Parent \n
-                          4   -> Drone Should Change Parent to p_id \n
-                          8   -> Drone Should Go Left towards the p_id \n
-                          16  -> Drone Should Go Right towards the p_id \n
-                          32  -> Reserved \n
-                          64  -> Reserved \n
-                          128 -> Reserved \n
+                          1   -> Drone Should Hold Pos at RC from Parent \n
+                          2   -> Drone Should Change Parent to p_id \n
+                          4   -> Drone Should Go Left of the p_id \n
+                          8   -> Drone Should Go Right of the p_id \n
                           
-    * * state             - This is a bit field consisting of the state this \n
+    * * state (int)     - This is a bit field consisting of the state this \n
                           drone is in. \n
+                          1   -> Site Reached \n
+                          2   -> On Straight Line \n
+                          4   -> Going Left/Right/Behind \n
+                          8   -> Left Neighbour \n
+                          16  -> Right Neighbour \n
+                          32  -> Centre Neighbour \n
+                          64  -> (Global) Site Reached \n
+                          128 -> (Global) Drone required \n
+                          256 -> Lawnmovering \n
 
-                          1  -> Fire Detected \n
-                          2  -> On Straight Line (Phase 1) \n
-                          4  -> Circling Around Anchor (Phase 2) \n
-                          8 -> Land and Unarmed \n
-                          16 -> Global Fire Detected \n
-                          32 -> Global Boundary Completed \n
-                          64 -> Reserved (Global) \n
-    * * p_id (int) \n 
-    * * p_loc (ns3::Vector3D) \n
+    * * p_id (int)      - Parent Id \n
+    * * neigh_cnt (int) - Neighbour Count \n
+    * * p_loc (ns3::Vector3D)  - Location of the Parent \n
+    * * bc_nbs (string)        - Broadcast Neighbours \n
     */
     struct USMsg
     {
@@ -173,7 +149,7 @@ namespace rnl{
         int               control; /**< Control information to receiver */
         int               state; /**< Self State information to receiver */
         int               p_id; /**< My Parent Index */
-        int               neigh_cnt;
+        int               neigh_cnt; /**< Neighbour Count */
         ns3::Vector3D     p_loc; /**< My Parent Location */
         std::string       bc_nbs; /**< Neighbours broadcasting to me */
         
@@ -192,6 +168,7 @@ namespace rnl{
          * @param co control value to destination node
          * @param st my state 
          * @param p my parent index
+         * @param neigh_count my neighbour count
          * @param _ploc my parent location
          */
         USMsg 
@@ -238,27 +215,29 @@ namespace rnl{
                           (.. | ID(int), hop(int), pos(ns3::Vector) | ..) \n 
                           hop - 1,2,3 ... \n
                           pos - x (float) : y (float) : z (float) \n
-    * * control           - This is a bit field which consists of all possible \n
+    * * control (int)   - This is a bit field which consists of all possible \n
                           control commands a particular drone can give. \n
-                          1   -> Drone Should Unarm and Land \n
-                          2   -> Drone Should Hold Pos at RC from Parent \n
-                          4   -> Drone Should Change Parent to p_id \n
-                          8   -> Drone Should Go Left towards the p_id \n
-                          16  -> Drone Should Go Right towards the p_id \n
-                          32  -> Drone Should Go Left towards the boundary \n
-                          64  -> Drone Should Go Right towards the boundary \n
+                          1   -> Drone Should Hold Pos at RC from Parent \n
+                          2   -> Drone Should Change Parent to p_id \n
+                          4   -> Drone Should Go Left of the p_id \n
+                          8   -> Drone Should Go Right of the p_id \n
                           
-    * * state             - This is a bit field consisting of the state this \n
+    * * state (int)     - This is a bit field consisting of the state this \n
                           drone is in. \n
+                          1   -> Site Reached \n
+                          2   -> On Straight Line \n
+                          4   -> Going Left/Right/Behind \n
+                          8   -> Left Neighbour \n
+                          16  -> Right Neighbour \n
+                          32  -> Centre Neighbour \n
+                          64  -> (Global) Site Reached \n
+                          128 -> (Global) Drone required \n
+                          256 -> Lawnmovering \n
 
-                          1  -> Fire Detected \n
-                          2  -> On Straight Line (Phase 1) \n
-                          4  -> Circling Around Anchor (Phase 2) \n
-                          8 -> Land and Unarmed \n
-                          16 -> Global Fire Detected \n
-                          32 -> Drone Required towards the boundary \n
-                          64 -> Reserved (Global) \n
-    * * p_id              - Parent To Follow \n
+    * * p_id (int)      - Parent Id \n
+    * * neigh_cnt (int) - Neighbour Count \n
+    * * p_loc (ns3::Vector3D)  - Location of the Parent \n
+    * * bc_nbs (string)        - Broadcast Neighbours \n
     */
     struct URMsg
     {
@@ -268,7 +247,7 @@ namespace rnl{
         int               control; /**< Control Command from source id to destination id */
         int               state; /**< State of the source */
         int               p_id; /**< Parent ID to be followed by the dst_id */
-        int               neigh_cnt;
+        int               neigh_cnt; /**< Neighbour Count */
         ns3::Vector3D     p_loc; /**< Location of Parent */
         std::string       bc_nbs; /**< Broadcast neighbours of Source ID, known if rnl::USMsg::msg_type is "u"*/
 
@@ -286,6 +265,7 @@ namespace rnl{
          * @param co control bit
          * @param st state bit
          * @param p parent id
+         * @param neigh_count neighbour count
          * @param _ploc parent location
          */
         URMsg 
@@ -319,7 +299,5 @@ namespace rnl{
          * @param msg If Incoming message is Unicast parsed here
          */
         void parseUnicast   (std::string& msg);
-
     };
-    
 };

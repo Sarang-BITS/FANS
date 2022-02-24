@@ -1,11 +1,5 @@
 /**
- * @file planner_ns3.h
- * @author Ojit Mehta (f20170372@goa.bits-pilani.ac.in)
  * @brief Planner class for the project 
- * @version 0.1
- * @date 2021-04-05
- * 
- * @copyright Copyright (c) 2021
  * 
  */
 #pragma once
@@ -39,15 +33,6 @@ void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Add
  */
 namespace rnl{
 
- //    ns3::Vector3D pos0(disas_centre.x + RC, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos1(disas_centre.x + RC, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos2(disas_centre.x + RC, disas_centre.y + RC, disas_centre.z);
-	// ns3::Vector3D pos3(disas_centre.x, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos4(disas_centre.x, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos5(disas_centre.x, disas_centre.y + RC, disas_centre.z);
-	// ns3::Vector3D pos6(disas_centre.x - RC, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos7(disas_centre.x - RC, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos8(disas_centre.x + RC, disas_centre.y + RC, disas_centre.z);
     /**
      * @brief Drone Socket common for planning and communication
      */
@@ -120,8 +105,6 @@ namespace rnl{
         void setRecv   (ns3::Ptr<ns3::Node> node, ns3::TypeId tid);
 
         void setRecvTCP (ns3::Ptr<ns3::Node> node, const std::string& ip, int num_nodes, ns3::Time stopTime);
-
-        // void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Address& a);
         
         ns3::Ptr<ns3::Socket>         source; /**< Socket for sending unicast messages */
         ns3::Ptr<ns3::Socket>         source_bc; /**< Socket for sending broadcast messaged */
@@ -138,11 +121,6 @@ namespace rnl{
         ns3::Vector3D                 pos; /**< Current position of the drone */
         int                           lookaheadindex; /**< Look ahead index for the drone */
         int                           toggle_bc; /**< toggle broadcast on */
-        
-        /**
-         * @brief Set if more drone required at the boundary
-         */
-        // void setReqDrone (); 
     };
 
     /**
@@ -236,9 +214,6 @@ namespace rnl{
             int num_nodes; /**< Number of nodes */
 
             ns3::AsciiTraceHelper ascii;
-
-            // The below set of helpers will help us to put together the wifi NICs we want
-            
     };
 
     /**
@@ -319,17 +294,7 @@ namespace rnl{
              * 
              */
             void incLookAhead ();
-
-            /**
-             * @brief Increment of child index by leader if it has commanded the previous id to the direction of the boundary
-             */
-            // void incLeaderChildId ();
             
-            /**
-             * @brief Function where leader needs to take in the SGDRONEREQ param and send commands to incoming UAV
-             * 
-             */
-            // void updateStateofLeader ();
             void updateStateofCentre ();
 
             /**
@@ -353,46 +318,8 @@ namespace rnl{
              */
             void updateSocsfromRec ();
 
-            /**
-             * @brief Get the Nearest Drone object
-             * 
-             * @param id index to which nearest drone object is required
-             * @return std::pair<int, ns3::Vector3D> 
-             */
-            std::pair<int, ns3::Vector3D> getNearestDrone (int id);
-
-            /**
-             * @brief check if anchor has been updated. Transition from one node to \n
-             * another in phase 2 happens here 
-             * 
-             * @param id current index
-             * @return std::pair<int, ns3::Vector3D> pair of id and position of the new anchor point
-             */
-            // std::pair<int, ns3::Vector3D> checkUpdateAnchor (int id);
-
-            /**
-             * @brief Check SGDRONEREQ for id, if more drones are required at the boundary.
-             * 
-             * @param i index 
-             */
-            // void checkDroneReq(int i);
             void doLawnMoverScanning(ns3::Time interval, int i, ns3::Vector3D pos0);
             
-            /**
-             * @brief Check if phase 2 direction of 2 UAVS is the same
-             * 
-             * @param id1 index of UAV
-             * @param id2 index of UAV
-             * @return true if same
-             * @return false otherwise
-             */
-            // bool isDirectionSame (int id1, int id2);
-
-            /**
-             * @brief Update senders after one time step
-             * 
-             */
-            // void updateSocsSenders  ();
             void updateSocs  ();
 
             /**
@@ -406,22 +333,9 @@ namespace rnl{
              * @brief Deprecated
              * 
              */
-            void takeOFF ();
+            void takeOff ();
             
-            // static ns3::Vector3D       fire_centre; /**< Centre of the fire */
             static ns3::Vector3D       disas_centre;
-            // static float               fire_rad; /**< Radius of the fire */
-            static float               disas_rad; /**< Radius of the fire */
-
-            // ns3::Vector3D pos0(disas_centre.x + RC, disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos1(disas_centre.x + RC, disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos2(disas_centre.x + RC, disas_centre.y + RC,    disas_centre.z);
-            // ns3::Vector3D pos3(disas_centre.x,      disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos4(disas_centre.x,      disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos5(disas_centre.x,      disas_centre.y + RC,    disas_centre.z);
-            // ns3::Vector3D pos6(disas_centre.x - RC, disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos7(disas_centre.x - RC, disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos8(disas_centre.x + RC, disas_centre.y + RC,    disas_centre.z);
 
         private:
             rnl::Properties            wifi_prop; /**< wifi properties object */

@@ -55,10 +55,10 @@ rnl::getTrajectory
         
         for (int i = 1; i < (int)vec_len/step; ++i){
             wpts -> push_back(ns3::Vector3D(
-                            start_pos.x + step * i * unit_vec.x,
-                            start_pos.y + step * i * unit_vec.y,
-                            start_pos.z + step * i * unit_vec.z)
-                        );
+                                start_pos.x + step * i * unit_vec.x,
+                                start_pos.y + step * i * unit_vec.y,
+                                start_pos.z + step * i * unit_vec.z)
+                            );
             if (wpts->size() > 1000)
             {
                 throw std::range_error ("Out of Range");
@@ -114,10 +114,10 @@ rnl::getTrajectoryContinue
         
         for (int i = 1; i < (int)vec_len/step; ++i){
             wpts -> push_back(ns3::Vector3D(
-                            start_pos.x + step * i * unit_vec.x,
-                            start_pos.y + step * i * unit_vec.y,
-                            start_pos.z + step * i * unit_vec.z)
-                        );
+                                start_pos.x + step * i * unit_vec.x,
+                                start_pos.y + step * i * unit_vec.y,
+                                start_pos.z + step * i * unit_vec.z)
+                            );
             if (wpts->size() > 1000)
             {
                 throw std::range_error ("Out of Range");
@@ -171,55 +171,11 @@ rnl::getToCircleRange (std::vector<ns3::Vector3D>* wpts,
     return res;
 }
 
-bool
-rnl::getCirclewpts
-            (
-                std::vector<ns3::Vector3D>* wpts,
-                ns3::Vector3D anch_node,
-                ns3::Vector3D child_node,
-                const float         circle_radius,
-                const float         dtheta,
-                const int           dir,
-                const float         step
-            )
-{
-    ns3::Vector3D _anch_p = (anch_node);
-    ns3::Vector3D _my_p   = (child_node);
-    
-    try
-    {
-        rnl::getToCircleRange(wpts, _anch_p, _my_p, circle_radius, step);
-        
-        float theta = atan2 (_my_p.y - _anch_p.y, 
-                            _my_p.x - _anch_p.x);
-        float theta_it = theta;
-        // while (abs(theta_it - theta) < 2 * M_PI)
-        while (abs(theta_it - theta) < 1.5*M_PI/2)
-        {
-            theta_it += dir * dtheta;
-            wpts -> push_back (ns3::Vector3D(
-                                _anch_p.x + circle_radius * cos(theta_it),
-                                _anch_p.y + circle_radius * sin(theta_it),
-                                _anch_p.z
-                                ));
-        }
-        return true;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-        return false;
-    }
-    
-}
-
 void rnl::posHold
 (
-
     std::vector<ns3::Vector3D>* wpts,
     ns3::Vector3D       pos
 )
-
 {
     wpts->push_back (pos);
     wpts->clear();

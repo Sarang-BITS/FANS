@@ -155,7 +155,5 @@ namespace rnl {
             ns3::Ptr<ns3::Socket> recv_sink1, recv_sink2, recv_sink3 = nullptr;
             
             ns3::Ptr<ns3::Socket> source1, source2 = nullptr;
-
     };
-
 };
