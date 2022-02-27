@@ -33,8 +33,9 @@ add_subdirectory(mavad)
 option(NS3_EMU "Build with emu support" ON)
 set(NS3_EMU ON)
 ```
-* Build `mavad`
+* Build `mavad` (source your ROS workspace before building so it can find `planner_msgs` which is a dependency for `mavad`)
 ```bash
+source <path_to_sop_ws>/devel/setup.bash
 cd <path_to_ns3-all-in-one>/NS3/cmake-cache
 make
 ```
