@@ -7,19 +7,12 @@
 
 ## Setup and demo
 * To use this project, you need to install ROS, MAVROS, PX4-SITL and NS3 (using CMake). Note that this project has been tested on Ubuntu 18.04 OS and ROS Melodic distribution. All the instructions to install these dependencies are given in the [SETUP.md](https://github.com/Sarang-BITS/airborne_networks/blob/main/SETUP.md) file
-* Clone this repo in your systems and copy [pci](https://github.com/Sarang-BITS/FANS/tree/main/pci) and [planner_msgs](https://github.com/Sarang-BITS/FANS/tree/main/planner_msgs) to `sop_ws/src` (ROS workspace), [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`, and `sitl8drones.launch` to `<path_to_sop_ws>/src/PX4-Autopilot/launch` 
+* Clone this repo in your systems and copy [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`
 ```bash
 cd ~
 git clone https://github.com/Sarang-BITS/FANS.git
-cp -r ~/FANS/planner_msgs <path_to_sop_ws>/src/
-cp -r ~/FANS/pci <path_to_sop_ws>/src/
+git checkout no_ros
 cp -r ~/FANS/mavad <path_to_ns3-all-in-one>/NS3/
-cp ~/FANS/sitl8drones.launch <path_to_sop_ws>/src/PX4-Autopilot/launch/
-```
-* Build your ROS workspace (sop_ws)
-```bash
-cd <path_to_sop_ws>
-catkin build
 ```
 * Edit the `CMakeLists.txt` file of `ns3-all-in-one/NS3` to build `mavad`
 ```bash
@@ -34,9 +27,8 @@ add_subdirectory(mavad)
 option(NS3_EMU "Build with emu support" ON)
 set(NS3_EMU ON)
 ```
-* Build `mavad` (source your ROS workspace before building so it can find `planner_msgs` which is a dependency for `mavad`). After the build is successful, you would find an executable `mavad_main` inside `<path_to_ns3-all-in-one>/NS3/build`.
+* Build `mavad`. After the build is successful, you would find an executable `mavad_main` inside `<path_to_ns3-all-in-one>/NS3/build`.
 ```bash
-source <path_to_sop_ws>/devel/setup.bash
 cd <path_to_ns3-all-in-one>/NS3/cmake-cache
 make
 ```
