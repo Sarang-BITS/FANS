@@ -1,14 +1,8 @@
 /**
- * @file planner_ns3_utils.h
- * @author Ojit Mehta (f20170372@goa.bits-pilani.ac.in)
- * @brief Utility functions for Swarm Planner   
- * @version 0.1
- * @date 2021-04-04
- * 
- * @copyright Copyright (c) 2021
- * 
+ * @brief Utility functions for Swarm Planner 
  */
 #pragma once
+
 #include <iomanip>
 #include <sstream>
 #include <vector>
@@ -29,7 +23,6 @@
  * @namespace
  */
 namespace rnl {
-
     /**
      * @brief Set the Position of an ns3 node
      * 
@@ -40,17 +33,6 @@ namespace rnl {
     (
         ns3::Ptr<ns3::Node> node,
         ns3::Vector3D       pos
-    );
-    
-    /**
-     * @brief Get the Position object
-     * 
-     * @param node get the position of object at this node 
-     * @return ns3::Vector3D 
-     */
-    ns3::Vector3D getPosition
-    (
-        ns3::Ptr<ns3::Node> node
     );
 
     bool inCriclingRange();
@@ -80,30 +62,6 @@ namespace rnl {
         ns3::Vector3D end_pos,
         double        step 
     );
-
-    /**
-     * @brief Get Trajectory while in phase 2 of operation (Anchoring about a UAV) 
-     * 
-     * @param wpts Waypoints pointer to be filled by final trajectory locations
-     * @param anch_node Location of anchoring node (Centre of the circle)
-     * @param child_node current Location of child node (Start position)
-     * @param circle_radius Radius at which waypoints need to be 
-     * @param dtheta Theta increment at which waypoints need to be added 
-     * @param dir Direction at which to increment (+ve Anticlockwise), (-ve Clockwise)
-     * @param step Step size used for getting to Circling Range of Anchoring node
-     * @return true if path found
-     * @return false if path not found
-     */
-    bool    getCirclewpts
-            (
-                std::vector<ns3::Vector3D>* wpts,
-                ns3::Vector3D anch_node,
-                ns3::Vector3D child_node,
-                const float         circle_radius,
-                const float         dtheta,
-                const int           dir,
-                const float         step
-            );
 
     /**
      * @brief Get the To Circle Range object
@@ -149,7 +107,6 @@ namespace rnl {
      */
     void posHold
     (
-
         std::vector<ns3::Vector3D>* wpts,
         ns3::Vector3D       pos
     );

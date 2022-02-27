@@ -1,12 +1,5 @@
 /**
- * @file planner_ns3.h
- * @author Ojit Mehta (f20170372@goa.bits-pilani.ac.in)
  * @brief Planner class for the project 
- * @version 0.1
- * @date 2021-04-05
- * 
- * @copyright Copyright (c) 2021
- * 
  */
 #pragma once
 
@@ -41,15 +34,6 @@ void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Add
  */
 namespace rnl{
 
- //    ns3::Vector3D pos0(disas_centre.x + RC, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos1(disas_centre.x + RC, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos2(disas_centre.x + RC, disas_centre.y + RC, disas_centre.z);
-	// ns3::Vector3D pos3(disas_centre.x, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos4(disas_centre.x, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos5(disas_centre.x, disas_centre.y + RC, disas_centre.z);
-	// ns3::Vector3D pos6(disas_centre.x - RC, disas_centre.y, disas_centre.z);
-	// ns3::Vector3D pos7(disas_centre.x - RC, disas_centre.y - RC, disas_centre.z);
-	// ns3::Vector3D pos8(disas_centre.x + RC, disas_centre.y + RC, disas_centre.z);
     /**
      * @brief Drone Socket common for planning and communication
      */
@@ -63,7 +47,7 @@ namespace rnl{
 
         /**
          * @brief send Packet after every pktInterval. \n
-         *  This registers a callback which is periodically called
+         * This registers a callback which is periodically called
          * 
          * @param pktInterval Packet interval at which this needs to be called. \n
          * The packet will be called after n * pktInterval 
@@ -170,10 +154,10 @@ namespace rnl{
              * @param _num_nodes Number of nodes in the swarm
              */
             Properties(
-                    std::string _phyMode, 
-                    double _rss, 
-                    int _num_nodes
-                    );
+                std::string _phyMode, 
+                double _rss, 
+                int _num_nodes
+            );
             
             /*********************************************************/
             /*NS3 Functions*/
@@ -244,9 +228,6 @@ namespace rnl{
             int num_nodes; /**< Number of nodes */
 
             ns3::AsciiTraceHelper ascii;
-
-            // The below set of helpers will help us to put together the wifi NICs we want
-            
     };
 
     /**
@@ -306,14 +287,7 @@ namespace rnl{
              * @brief Set the Initial Leader Explore Path. Currently just a straight path towards assumed fire node
              */
             void setLeaderExplorePath ();
-            /**
-             * @brief Check if boundary reached
-             * 
-             * @param node_pos position 
-             * @return true if position in or at the boundary edge
-             * @return false if node_pos exterior point of your boundary
-             */
-            // static bool fireDetected (ns3::Vector3D node_pos);
+            
             static bool siteReached (ns3::Vector3D node_pos, int ID);
 
             /**
@@ -327,17 +301,7 @@ namespace rnl{
              * 
              */
             void incLookAhead ();
-
-            /**
-             * @brief Increment of child index by leader if it has commanded the previous id to the direction of the boundary
-             */
-            // void incLeaderChildId ();
             
-            /**
-             * @brief Function where leader needs to take in the SGDRONEREQ param and send commands to incoming UAV
-             * 
-             */
-            // void updateStateofLeader ();
             void updateStateofCentre ();
 
             /**
@@ -361,47 +325,8 @@ namespace rnl{
              */
             void updateSocsfromRec ();
 
-            /**
-             * @brief Get the Nearest Drone object
-             * 
-             * @param id index to which nearest drone object is required
-             * @return std::pair<int, ns3::Vector3D> 
-             */
-            std::pair<int, ns3::Vector3D> getNearestDrone (int id);
-
-            /**
-             * @brief check if anchor has been updated. Transition from one node to \n
-             * another in phase 2 happens here 
-             * 
-             * @param id current index
-             * @return std::pair<int, ns3::Vector3D> pair of id and position of the new anchor point
-             */
-            // std::pair<int, ns3::Vector3D> checkUpdateAnchor (int id);
-
-            /**
-             * @brief Check SGDRONEREQ for id, if more drones are required at the boundary.
-             * 
-             * @param i index 
-             */
-            // void checkDroneReq(int i);
-
             void doLawnMoverScanning(ns3::Time interval, int i, ns3::Vector3D pos0);
-            
-            /**
-             * @brief Check if phase 2 direction of 2 UAVS is the same
-             * 
-             * @param id1 index of UAV
-             * @param id2 index of UAV
-             * @return true if same
-             * @return false otherwise
-             */
-            // bool isDirectionSame (int id1, int id2);
 
-            /**
-             * @brief Update senders after one time step
-             * 
-             */
-            // void updateSocsSenders  ();
             void updateSocs  ();
 
             /**
@@ -410,32 +335,10 @@ namespace rnl{
              * @param interval frequency at which to advanceposition. Will determine the speed of simulation 
              */
             void advancePos (ns3::Time interval);
-            void takeOFF (double _t);
+            void takeOff (double _t);
             bool withinThreshold (const rnl::DroneSoc* _soc);
             
-            // static ns3::Vector3D       fire_centre;
-            // static float               fire_rad;
-
-            /**
-             * @brief Deprecated
-             * 
-             */
-            // void takeOff ();
-            
-            // static ns3::Vector3D       fire_centre; /**< Centre of the fire */
             static ns3::Vector3D       disas_centre;
-            // static float               fire_rad; /**< Radius of the fire */
-            static float               disas_rad; /**< Radius of the fire */
-
-            // ns3::Vector3D pos0(disas_centre.x + RC, disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos1(disas_centre.x + RC, disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos2(disas_centre.x + RC, disas_centre.y + RC,    disas_centre.z);
-            // ns3::Vector3D pos3(disas_centre.x,      disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos4(disas_centre.x,      disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos5(disas_centre.x,      disas_centre.y + RC,    disas_centre.z);
-            // ns3::Vector3D pos6(disas_centre.x - RC, disas_centre.y,         disas_centre.z);
-            // ns3::Vector3D pos7(disas_centre.x - RC, disas_centre.y - RC,    disas_centre.z);
-            // ns3::Vector3D pos8(disas_centre.x + RC, disas_centre.y + RC,    disas_centre.z);
 
         private:
             ros::NodeHandle nh;
