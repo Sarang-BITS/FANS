@@ -55,10 +55,10 @@ pip install \
 ```
 
 ### 3) Download MAVROS, MAVLink packages and build them
-* After ROS installation is complete, set up and initialize a ROS workspace with any name (for e.g. `sop_ws`)
+* After ROS installation is complete, set up and initialize a ROS workspace with any name (for e.g. `fans_ws`)
 ```
-mkdir -p sop_ws/src
-cd sop_ws
+mkdir -p fans_ws/src
+cd fans_ws
 catkin init && wstool init src
 ```
 * Add the .rosinstall files for MAVROS and MAVLink and build them (Note that the below steps are to be done in the root of the workspace)
@@ -78,20 +78,20 @@ catkin build
 
 ### 4) Download the PX4 Firmware package and build it
 ```
-cd ~/sop_ws/src
+cd ~/fans_ws/src
 git clone https://github.com/PX4/PX4-Autopilot.git --recursive
 cd PX4-Autopilot
 make px4_sitl_default gazebo 
 ```
 
-### 5) Add the Gazebo model and ROS package paths to `sop_ws/devel/setup.bash` file
-* Add the following lines to the `setup.bash` file inside (at the end) `<path_to_sop_ws>/devel` so Gazebo can find the sdf models and ROS can find the packages when you source your ROS workspace (sop_ws).
+### 5) Add the Gazebo model and ROS package paths to `fans_ws/devel/setup.bash` file
+* Add the following lines to the `setup.bash` file inside (at the end) `<path_to_fans_ws>/devel` so Gazebo can find the sdf models and ROS can find the packages when you source your ROS workspace (fans_ws).
 ```
-source ~/sop_ws/src/PX4-Autopilot/Tools/setup_gazebo.bash ~/sop_ws/src/PX4-Autopilot/ ~/sop_ws/src/PX4-Autopilot/build/px4_sitl_default
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot
-export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot/Tools/sitl_gazebo
+source ~/fans_ws/src/PX4-Autopilot/Tools/setup_gazebo.bash ~/fans_ws/src/PX4-Autopilot/ ~/fans_ws/src/PX4-Autopilot/build/px4_sitl_default
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/fans_ws/src/PX4-Autopilot
+export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/fans_ws/src/PX4-Autopilot/Tools/sitl_gazebo
 ```
-* If you don't want the Gazebo paths to be printed in your terminal every time, comment out the print (`echo`) statements in the `sop_ws/src/PX4-Autopilot/Tools/setup_gazebo.bash` file.
+* If you don't want the Gazebo paths to be printed in your terminal every time, comment out the print (`echo`) statements in the `fans_ws/src/PX4-Autopilot/Tools/setup_gazebo.bash` file.
 ```
 #echo -e "GAZEBO_PLUGIN_PATH $GAZEBO_PLUGIN_PATH"
 #echo -e "GAZEBO_MODEL_PATH $GAZEBO_MODEL_PATH"
@@ -119,7 +119,7 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/sop_ws/src/PX4-Autopilot/Tools/sitl_
 ### 7) Testing the setup
 * Source your workspace in the current working terminal
 ```
-source ~/sop_ws/devel/setup.bash
+source ~/fans_ws/devel/setup.bash
 ```
 * Launch PX4 and MAVROS nodes using the following command, you must see an iris drone in a Gazebo world environment.
 ```
@@ -148,9 +148,9 @@ system_status: 3
 ```
 
 ### n) Tips for fast execution
-* Create an alias in your `.bashrc` file with the name of your workspace to source your workspace from any terminal super fast. For e.g. if the name of your workspace is `sop_ws` (assumed to be there in the `~` directory), add the following line in your `.bashrc` file (present in the `~` folder).
+* Create an alias in your `.bashrc` file with the name of your workspace to source your workspace from any terminal super fast. For e.g. if the name of your workspace is `fans_ws` (assumed to be there in the `~` directory), add the following line in your `.bashrc` file (present in the `~` folder).
 ```
-alias sop_ws='source ~/sop_ws/devel/setup.bash'
+alias fans_ws='source ~/fans_ws/devel/setup.bash'
 ```
 
 ## [B] Installing and setting up NS3 with cmake
