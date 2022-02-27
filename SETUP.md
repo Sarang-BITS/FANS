@@ -84,7 +84,7 @@ cd PX4-Autopilot
 make px4_sitl_default gazebo 
 ```
 
-### 5) Add the Gazebo model and ROS package paths in your `.bashrc` file
+### 5) Add the Gazebo model and ROS package paths to `sop_ws/devel/setup.bash` file
 * Add the following lines to the `setup.bash` file inside (at the end) `<path_to_sop_ws>/devel` so Gazebo can find the sdf models and ROS can find the packages when you source your ROS workspace (sop_ws).
 ```
 source ~/sop_ws/src/PX4-Autopilot/Tools/setup_gazebo.bash ~/sop_ws/src/PX4-Autopilot/ ~/sop_ws/src/PX4-Autopilot/build/px4_sitl_default
