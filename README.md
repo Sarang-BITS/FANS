@@ -33,7 +33,7 @@ make
 ```
 * **Running the simulation demo**
     * Launch the network simulator and planner stack (in terminal 1). You should see the IP initialization and message communication logs in the terminal and the formation motion of drones in the Gazebo simulator window
-    ```
+    ```bash
     cd <path_to_ns3-all-in-one>/NS3/build
     ./mavad_main
     ```
