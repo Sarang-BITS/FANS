@@ -1,4 +1,12 @@
-# airborne_networks
+# FANS : Setup and dependencies
+
+Following are the main OS/software/frameworks required to run FANS : 
+* [Ubuntu 18.04 LTS (OS)](https://releases.ubuntu.com/18.04/)
+* [ROS Melodic LTS (Middleware)](http://wiki.ros.org/melodic)
+* [MAVROS](http://wiki.ros.org/mavros), [Mavlink](https://mavlink.io/en/), [PX4-Autopilot](https://docs.px4.io/master/en/) (UAV simulation packages)
+* [NS3](https://www.nsnam.org/) - built with waf (Network simulator, this version will be used to standalone (without Gazebo, ROS interface) simulations)
+* [NS3](https://gabrielcarvfer.github.io/NS3/) - built with CMake (Network simulator to interface with Gazebo via ROS)
+
 
 ## [A] Setting up PX4 SITL with ROS Melodic (Ubuntu 18.04) in a simulated environment in Gazebo.
 
