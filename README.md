@@ -7,18 +7,18 @@
 
 ## Setup and demo
 * To use this project, you need to install ROS, MAVROS, PX4-SITL and NS3 (using CMake). Note that this project has been tested on Ubuntu 18.04 OS and ROS Melodic distribution. All the instructions to install these dependencies are given in the [SETUP.md](https://github.com/Sarang-BITS/airborne_networks/blob/main/SETUP.md) file
-* Clone this repo in your systems and copy [pci](https://github.com/Sarang-BITS/FANS/tree/main/pci) and [planner_msgs](https://github.com/Sarang-BITS/FANS/tree/main/planner_msgs) to `sop_ws/src` (ROS workspace), [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`, and `sitl8drones.launch` to `<path_to_sop_ws>/src/PX4-Autopilot/launch` 
+* Clone this repo in your systems and copy [pci](https://github.com/Sarang-BITS/FANS/tree/main/pci) and [planner_msgs](https://github.com/Sarang-BITS/FANS/tree/main/planner_msgs) to `fans_ws/src` (ROS workspace), [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`, and `sitl8drones.launch` to `<path_to_fans_ws>/src/PX4-Autopilot/launch` 
 ```bash
 cd ~
 git clone https://github.com/Sarang-BITS/FANS.git
-cp -r ~/FANS/planner_msgs <path_to_sop_ws>/src/
-cp -r ~/FANS/pci <path_to_sop_ws>/src/
+cp -r ~/FANS/planner_msgs <path_to_fans_ws>/src/
+cp -r ~/FANS/pci <path_to_fans_ws>/src/
 cp -r ~/FANS/mavad <path_to_ns3-all-in-one>/NS3/
-cp ~/FANS/sitl8drones.launch <path_to_sop_ws>/src/PX4-Autopilot/launch/
+cp ~/FANS/sitl8drones.launch <path_to_fans_ws>/src/PX4-Autopilot/launch/
 ```
-* Build your ROS workspace (sop_ws)
+* Build your ROS workspace (fans_ws)
 ```bash
-cd <path_to_sop_ws>
+cd <path_to_fans_ws>
 catkin build
 ```
 * Edit the `CMakeLists.txt` file of `ns3-all-in-one/NS3` to build `mavad`
@@ -36,19 +36,19 @@ set(NS3_EMU ON)
 ```
 * Build `mavad` (source your ROS workspace before building so it can find `planner_msgs` which is a dependency for `mavad`). After the build is successful, you would find an executable `mavad_main` inside `<path_to_ns3-all-in-one>/NS3/build`.
 ```bash
-source <path_to_sop_ws>/devel/setup.bash
+source <path_to_fans_ws>/devel/setup.bash
 cd <path_to_ns3-all-in-one>/NS3/cmake-cache
 make
 ```
 * **Running the simulation demo**
     * Launch the the drones with PX4 autopilot and MAVROS in Gazebo (in terminal 1). You should see 8 unarmed, landed drones in the Gazebo simulator window
     ```bash
-    source <path_to_sop_ws>/devel/setup.bash
+    source <path_to_fans_ws>/devel/setup.bash
     roslaunch px4 sitl8drones.launch
     ```
     * Launch the planner control interface for the drones (in terminal 2). You should see the 8 drones armed and hovering at a certain height in the Gazebo simulator window
     ```bash
-    source <path_to_sop_ws>/devel/setup.bash
+    source <path_to_fans_ws>/devel/setup.bash
     roslaunch pci pci8drones.launch
     ```
     * Launch the network simulator and planner stack (in terminal 3). You should see the IP initialization and message communication logs in the terminal and the formation motion of drones in the Gazebo simulator window
