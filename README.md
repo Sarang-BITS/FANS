@@ -41,20 +41,25 @@ cd <path_to_ns3-all-in-one>/NS3/cmake-cache
 make
 ```
 * **Running the simulation demo**
-    * Launch the the drones with PX4 autopilot and MAVROS in Gazebo (in terminal 1). You should see 8 unarmed, landed drones in the Gazebo simulator window
+    ~~* Launch the the drones with PX4 autopilot and MAVROS in Gazebo (in terminal 1). You should see 8 unarmed, landed drones in the Gazebo simulator window~~
     ```bash
     source <path_to_sop_ws>/devel/setup.bash
     roslaunch px4 sitl8drones.launch
     ```
-    * Launch the planner control interface for the drones (in terminal 2). You should see the 8 drones armed and hovering at a certain height in the Gazebo simulator window
+    ~~* Launch the planner control interface for the drones (in terminal 2). You should see the 8 drones armed and hovering at a certain height in the Gazebo simulator window~~
     ```bash
     source <path_to_sop_ws>/devel/setup.bash
     roslaunch pci pci8drones.launch
     ```
-    * Launch the network simulator and planner stack (in terminal 3). You should see the IP initialization and message communication logs in the terminal and the formation motion of drones in the Gazebo simulator window
+    * Launch the network simulator and planner stack (in terminal ~3~ 1). You should see the IP initialization and message communication logs in the terminal and the formation motion of drones in the Gazebo simulator window
     ```
     cd <path_to_ns3-all-in-one>/NS3/build
     ./mavad_main
+    ```
+    * Fire up the NetAnim visualizer to visualize message communication between nodes and their positions and open the XML trace file `<path_to-ns3-all-in-one>/NS3/build/planner_ns3_anim.xml` in it
+    ```bash
+    cd <path_to-ns3-all-in-one>/netanim
+    ./NetAnim
     ```
 
 
