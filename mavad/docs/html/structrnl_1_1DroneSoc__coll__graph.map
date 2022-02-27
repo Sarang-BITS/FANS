@@ -1,5 +1,0 @@
-<map id="rnl::DroneSoc" name="rnl::DroneSoc">
-<area shape="rect" id="node2" href="$structrnl_1_1Nbt.html" title="For parsing and serializing data of neighbouring nodes. " alt="" coords="5,5,71,32"/>
-<area shape="rect" id="node3" href="$structrnl_1_1URMsg.html" title="This Structure Will be parsed as a Unicast Message. The &#160;communication will have this format..." alt="" coords="95,5,184,32"/>
-<area shape="rect" id="node4" href="$structrnl_1_1USMsg.html" title="This Structure Will be Serialized and sent as Unicast Message. The &#160;communication will have this form..." alt="" coords="209,5,297,32"/>
-</map>
