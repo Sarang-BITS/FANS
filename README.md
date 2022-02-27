@@ -56,6 +56,11 @@ make
     cd <path_to_ns3-all-in-one>/NS3/build
     ./mavad_main
     ```
+    * Fire up the NetAnim visualizer to visualize message communication between nodes and their positions and open the XML trace file `<path_to-ns3-all-in-one>/NS3/build/planner_ns3_anim.xml` in it
+    ```bash
+    cd <path_to-ns3-all-in-one>/netanim
+    ./NetAnim
+    ```
 
 
 ## Contributors
