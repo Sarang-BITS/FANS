@@ -24,8 +24,8 @@
  */
 namespace rnl{
     static std::string DELIM           = "\n"; /** Delimiter used for serializing message to stringstream @see rnl::USMsg::serialize() @see URMsg::serialize() */
-    static std::string DELIM_NBTHOP    = "|"; /** Delimiter for specifiying neighbouring hops @see Nbt::serialize*/
-    static std::string DELIM_NBTPOS    = ".";  /** Delimiter for specifiying neighbouring hops @see Nbt::serialize*/
+    static std::string DELIM_NBTHOP    = "|"; /** Delimiter for seperating neighbours at same hop count @see Nbt::serialize*/
+    static std::string DELIM_NBTPOS    = ".";  /** Delimiter for specifiying neighbour's position @see Nbt::serialize*/
     static std::string DELIM_NBTID_POS = ","; /** Delimiter for specifiying neighbouring hops @see Nbt::serialize*/
     static std::string DELIM_NBTMHOP   = "~~"; /** Delimiter seperating neighbours based on hop count @see Nbt::serialize*/
     static std::string DELIM_POS       = ":"; /** Delimiter seperating coordinate value of robot pose @see URMsg::parseUnicast*/
@@ -38,7 +38,7 @@ namespace rnl{
     /**
      * @enum 
      * @brief Specifying state of a node and swarm as known by the node. Used as a bitfield. \n
-     * eg. If I am online and swarm leader has reached site, my state will be 2 (SONLINE) + 64 (SGSITEREACHED)
+     * eg. If I am online and swarm leader has reached site, my state will be 66 = 2 (SONLINE) + 64 (SGSITEREACHED)
      */
     enum state
     {
@@ -100,17 +100,17 @@ namespace rnl{
     * @struct USMsg
     * 
     * @brief
-    * This Structure Will be Serialized and sent as Unicast Message. The \n
+    * This Structure will be Serialized and sent as Unicast Message. The \n
     * communication will have this format. Each drone sends \n
     * Unicast Message in this format. The serializer will make a \n
     * delimiter seperated string which will be passed onto the sockets \n
     * for transmission. \n
     * 
-    * * msg_type (char) - Is the message bc/unicast (u/b) \n
+    * * msg_type (char) - Is the message unicast/broadcast (u/b) \n
     * * source_id  (int)- The ID which I have while Sending the message \n
     * * dst_id (int)    - The Destination ID, Message will be sent to this ID \n
     * * nbs    (string) - The Neighbour Table Of this Node, \n
-                          Format of String is | seperated as follows: \n
+                          Format of String is seperated as follows: \n
                           (.. | ID(int), hop(int), pos(ns3::Vector) | ..) \n 
                           hop - 1,2,3 ...  \n
                           pos - x (float) : y (float) : z (float) \n
@@ -124,7 +124,6 @@ namespace rnl{
                           
     * * state (int)     - This is a bit field consisting of the state this \n
                           drone is in. \n
-
                           1   -> Site Reached \n
                           2   -> On Straight Line \n
                           4   -> Going Left/Right/Behind \n
@@ -148,9 +147,9 @@ namespace rnl{
         int               dst_id; /**< Destination index to which this message was intended to be sent */
         std::string       nbs; /**< Information about my neighbours */
         int               control; /**< Control information to receiver */
-        int               state; /**< Self State information to receiver */
+        int               state; /**< State information of the sender */
         int               p_id; /**< My Parent Index */
-        int               neigh_cnt;/**< Neighbour Count */
+        int               neigh_cnt;/**< My Neighbour Count */
         ns3::Vector3D     p_loc; /**< My Parent Location */
         std::string       bc_nbs; /**< Neighbours broadcasting to me */
         
@@ -208,10 +207,10 @@ namespace rnl{
     * Unicast Message in this format. The parser will convert \n
     * the received message into struct members. \n
     * 
-    * * source_id  (int)    - The ID which I have while Sending the message \n
+    * * source_id  (int)- The ID which I have while Sending the message \n
     * * dst_id (int)    - The Destination ID, Message will be sent to this ID \n
-    * * nbs    (string) - The Neighbour Table Of this Node, \n
-                          Format of String is | seperated as follows: \n
+    * * nbs    (string) - The Neighbour Table of this Node, \n
+                          Format of String is seperated as follows: \n
                           (.. | ID(int), hop(int), pos(ns3::Vector) | ..) \n 
                           hop - 1,2,3 ... \n
                           pos - x (float) : y (float) : z (float) \n
@@ -225,7 +224,6 @@ namespace rnl{
                           
     * * state (int)     - This is a bit field consisting of the state this \n
                           drone is in. \n
-
                           1   -> Site Reached \n
                           2   -> On Straight Line \n
                           4   -> Going Left/Right/Behind \n

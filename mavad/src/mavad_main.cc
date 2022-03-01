@@ -1,5 +1,5 @@
 /**
- * @brief Exucatable file for simulation,  contains the main function
+ * @brief Executable file for simulation, contains the main function
  */
 
 #include "planner_ns3.h"
@@ -22,12 +22,13 @@ int main(int argc, char **argv){
 
     ros::NodeHandle nh;
     ros::NodeHandle nh_private("~");
+
     /**
-     * Create an object of properties, give in phyMode, rssi value and number of nodes 
+     * Create an object of properties, give phyMode, rss value and number of nodes 
      */
     Properties prop ("DsssRate11Mbps",-80, 8);
-    prop.initialize(true, true); /**< Initializing wihtout realtime simulation and with checksum disabled*/
-    prop.setWifi (false, true); /**<Set wifi without debug and disable pcap */
+    prop.initialize(true, true); /**< Initializing with realtime simulation and with checksum enabled*/
+    prop.setWifi (false, true); /**<Set wifi without debug and enable pcap and ascii tracing*/
     prop.setInternet (); /**< Set IP*/
 
     /**

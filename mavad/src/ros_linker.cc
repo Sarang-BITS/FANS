@@ -1,7 +1,7 @@
 #include "ros_linker.h"
 
 rnl::Interface::Interface (ros::NodeHandle& _nh, ros::NodeHandle& _nh_private, std::string _phyMode = "DsssRate1Mbps", 
-  double _rss = -80,  // -dBm
+  double _rss = -80,  // -dBm [Deprecated]
   uint32_t _packetSize = 1000, // bytes
   uint32_t _numPackets = 10,
   double _interval = 1.0, // seconds
@@ -30,7 +30,7 @@ rnl::Interface::Interface (ros::NodeHandle& _nh, ros::NodeHandle& _nh_private, s
                       10, &rnl::Interface::localStateCb2, this);
   
   msg1 << "0,0,0,0.0,0.0,0.0"; //Initializing the messages to 0
-  msg2  << "0,0,0,0.0,0.0,0.0";
+  msg2 << "0,0,0,0.0,0.0,0.0";
 }
 
 void rnl::Interface::initialize(bool rt , bool chsum ) 
@@ -39,18 +39,16 @@ void rnl::Interface::initialize(bool rt , bool chsum )
     broadcast_interval = ns3::Seconds(interval);
     
     if (rt){
-        ns3::GlobalValue::Bind ("SimulatorImplementationType",
-                        ns3::StringValue ("ns3::RealtimeSimulatorImpl"));
+        ns3::GlobalValue::Bind ("SimulatorImplementationType", ns3::StringValue ("ns3::RealtimeSimulatorImpl"));
         ns3::GlobalValue::Bind ("ChecksumEnabled", ns3::BooleanValue (chsum));
     }
 
     // Fix non-unicast data rate to be the same as that of unicast
-    ns3::Config::SetDefault ("ns3::WifiRemoteStationManager::NonUnicastMode",
-                      ns3::StringValue (phy_mode));
+    ns3::Config::SetDefault ("ns3::WifiRemoteStationManager::NonUnicastMode", ns3::StringValue (phy_mode));
 
     c.Create(num_nodes);
     tid = ns3::TypeId::LookupByName ("ns3::UdpSocketFactory");
-    std::cerr<<"TEST1:Initialization Complete"<<std::endl;
+    std::cerr << "Initialization Complete" << std::endl;
 }
 
 void rnl::Interface::setWifi()
@@ -92,7 +90,7 @@ void rnl::Interface::setWifi()
 
   wifiPhy.EnablePcap ("mavad", devices);
 
-  std::cerr<<"TEST2:Wifi Properties Set"<<std::endl;
+  std::cerr << "Wifi Properties Set" << std::endl;
 }
 
 
@@ -110,17 +108,17 @@ void rnl::Interface::setMobility()
   mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
   mobility.Install (c);
 
-  std::cerr<<"TEST3: Mobility Set"<<std::endl;
+  std::cerr << "Mobility Set" << std::endl;
 }
 
 void rnl::Interface::setInternet()
 {
   internet.Install (c);
-  std::cerr<<"Assigning IP"<<std::endl;
+  std::cerr << "Assigning IP" << std::endl;
   ipv4.SetBase ("10.1.1.0", "255.255.255.0");
   i = ipv4.Assign (devices);
 
-  std::cerr<<"TEST4: IPs Assigned"<<std::endl;
+  std::cerr << "IPs Assigned" << std::endl;
 }
 
 void rnl::Interface::setReceivers()
@@ -140,7 +138,7 @@ void rnl::Interface::setReceivers()
   recv_sink3->Bind (local3);
   recv_sink3->SetRecvCallback (ns3::MakeCallback (&rnl::Interface::receivePacket3, this));
   
-  std::cerr<<"TEST5: Rceivers Set"<<std::endl;
+  std::cerr << "Receivers Set" << std::endl;
 }
 
 void rnl::Interface::setSenders()
@@ -156,7 +154,7 @@ void rnl::Interface::setSenders()
   source2->SetAllowBroadcast (true);
   source2->Connect (remote2);
 
-  std::cerr<<"TEST6: Senders Set"<<std::endl;
+  std::cerr << "Senders Set" << std::endl;
 }
 
 void rnl::Interface::receivePacket1(ns3::Ptr<ns3::Socket> soc)
@@ -164,7 +162,7 @@ void rnl::Interface::receivePacket1(ns3::Ptr<ns3::Socket> soc)
   /*The Master node. Only sends*/
   while (ns3::Ptr<ns3::Packet> msg = soc->Recv ())
   {
-	  std::cerr<< "Node 1 received Packet at " << ns3::Simulator::Now ().GetSeconds()<<std::endl;
+	  std::cerr << "Node 1 received Packet at " << ns3::Simulator::Now ().GetSeconds() << std::endl;
   }
 } 
 
@@ -173,7 +171,7 @@ void rnl::Interface::receivePacket2(ns3::Ptr<ns3::Socket> soc)
   std::string receivedData;
   while (ns3::Ptr<ns3::Packet> msg = soc->Recv ())
   {
-    std::cerr<< "Node 2 received Packet at " << ns3::Simulator::Now ().GetSeconds()<<std::endl;
+    std::cerr << "Node 2 received Packet at " << ns3::Simulator::Now ().GetSeconds() << std::endl;
     uint8_t *buffer = new uint8_t[msg->GetSize ()];
     msg->CopyData (buffer, msg->GetSize ());
     receivedData = std::string ((char *) buffer);
@@ -189,7 +187,7 @@ void rnl::Interface::receivePacket3(ns3::Ptr<ns3::Socket> soc)
   std::string receivedData;
   while (ns3::Ptr<ns3::Packet> msg = soc->Recv ())
   {
-	  std::cerr<< "Node 3 received Packet at " << ns3::Simulator::Now ().GetSeconds()<<std::endl;
+	  std::cerr << "Node 3 received Packet at " << ns3::Simulator::Now ().GetSeconds() << std::endl;
     uint8_t *buffer = new uint8_t[msg->GetSize ()];
     msg->CopyData (buffer, msg->GetSize ());
     receivedData = std::string ((char *) buffer);
@@ -208,7 +206,7 @@ void rnl::Interface::sendPacket1 (ns3::Ptr<ns3::Socket> soc, uint32_t pktSize, n
   ros::spinOnce(); // For making Subscriber Callbacks and updating msg with latest data
 	ns3::Ptr<ns3::Packet> packet = ns3::Create<ns3::Packet> ((uint8_t*) msg1.str().c_str(), msg1.str().length());
 	
-  std::cerr<<"Sending packet from node 1 at " << ns3::Simulator::Now().GetSeconds()<<std::endl;
+  std::cerr <<"Sending packet from node 1 at " << ns3::Simulator::Now().GetSeconds() << std::endl;
   soc->Send (packet);
 
 	ns3::Simulator::Schedule (3*pktInterval, &rnl::Interface::sendPacket1, this,
@@ -216,13 +214,12 @@ void rnl::Interface::sendPacket1 (ns3::Ptr<ns3::Socket> soc, uint32_t pktSize, n
 }
 
 
-void rnl::Interface::sendPacket2 (ns3::Ptr<ns3::Socket> soc, uint32_t pktSize,
-                        ns3::Time pktInterval)
+void rnl::Interface::sendPacket2 (ns3::Ptr<ns3::Socket> soc, uint32_t pktSize, ns3::Time pktInterval)
 {
   ros::spinOnce(); // For making Subscriber Callbacks and updating msg with latest data
   
 	ns3::Ptr<ns3::Packet> packet = ns3::Create<ns3::Packet> ((uint8_t*) msg2.str().c_str(), msg2.str().length());
-	std::cerr<<"Sending packet from node 2 at " << ns3::Simulator::Now().GetSeconds()<<std::endl;
+	std::cerr << "Sending packet from node 2 at " << ns3::Simulator::Now().GetSeconds() << std::endl;
 	soc->Send (packet);
 }
 
@@ -246,7 +243,6 @@ void rnl::Interface::setPosition(ns3::Ptr<ns3::Node> node, ns3::Vector position)
 void rnl::Interface::localStateCb1 (const planner_msgs::DroneMsg& drone_msg)
 {
   /*Convert the rostopic message to stringstream in sequence of rosmsg*/
-  
   msg1.str("");
   msg1.clear();
   
@@ -268,9 +264,9 @@ void rnl::Interface::localStateCb2 (const planner_msgs::DroneMsg& drone_msg)
   msg2.str("");
   msg2.clear();
   
-  msg2<< drone_msg.id << "," << drone_msg.status << "," << 
-          drone_msg.direction << "," << drone_msg.x << "," 
-          << drone_msg.y << "," << drone_msg.z;
+  msg2  << drone_msg.id << "," << drone_msg.status << ","
+        << drone_msg.direction << "," << drone_msg.x << "," 
+        << drone_msg.y << "," << drone_msg.z;
           
   msg2 << '\0';
 
@@ -282,8 +278,7 @@ void rnl::Interface::localStateCb2 (const planner_msgs::DroneMsg& drone_msg)
 
 planner_msgs::DroneMsg rnl::Interface::parseRecMsg (std::string& rc_msg) 
 {
-  /*rc_msg is parsed by delimiter and according to the rosmsg sequence
-  temp message is prepared*/
+  /*rc_msg is parsed by delimiter and according to the rosmsg sequence temp message is prepared*/
 
   planner_msgs::DroneMsg temp;
   std::string delimiter = ",";

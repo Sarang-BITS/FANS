@@ -12,7 +12,7 @@ int Pkt[] = {1, 1, 1, 1, 1, 1, 1, 1, 1};
 void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Address& a)
 {
   std::cerr << "At " << ns3::Simulator::Now ().GetSeconds ()
-            << " sec node" << index << " received " << p->GetSize () << "bytes"
+            << " sec, node" << index << " received " << p->GetSize () << "bytes"
             << " from "<< ns3::InetSocketAddress::ConvertFrom (a).GetIpv4() << std::endl;
 
   std::ofstream out;
@@ -22,7 +22,7 @@ void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Add
     if( ns3::Ipv4Address( (rnl::IP_BASE + std::to_string(i+1)).c_str() ) == ns3::InetSocketAddress::ConvertFrom(a).GetIpv4() )
     {
       out << "At " << ns3::Simulator::Now().GetSeconds() << "\t" << "received " << "Pkt No.:" << Pkt[i]
-                << " from "<< "node" << i << std::endl;
+          << " from "<< "node" << i << std::endl;
 
       Pkt[i]++;
 
@@ -47,7 +47,7 @@ void TraceSink (std::size_t index, ns3::Ptr<const ns3::Packet> p, const ns3::Add
 /*---------------------------------------------------------------------------*/
 rnl::Properties::Properties (
   std::string _phyMode = "DsssRate1Mbps", 
-  double _rss = -80,  // -dBm
+  double _rss = -80,  // dBm // Deprecated
   int _num_nodes = 3
 ):
   phy_mode{_phyMode}, 
@@ -60,8 +60,7 @@ void rnl::Properties::initialize(bool rt , bool chsum )
 {
   if (rt)
   {
-    ns3::GlobalValue::Bind ("SimulatorImplementationType",
-        ns3::StringValue ("ns3::RealtimeSimulatorImpl"));
+    ns3::GlobalValue::Bind ("SimulatorImplementationType", ns3::StringValue ("ns3::RealtimeSimulatorImpl"));
     ns3::GlobalValue::Bind ("ChecksumEnabled", ns3::BooleanValue (chsum));
   }
 
@@ -71,7 +70,7 @@ void rnl::Properties::initialize(bool rt , bool chsum )
 
   c.Create(num_nodes);
   tid = ns3::TypeId::LookupByName ("ns3::UdpSocketFactory");
-  std::cerr<<"TEST1:Initialization of Properties Complete..."<<std::endl;
+  std::cerr<<"Initialization of Properties Completed..."<<std::endl;
 }
 
 void rnl::Properties::setWifi(bool verbose, bool pcap_enable)
@@ -107,6 +106,7 @@ void rnl::Properties::setWifi(bool verbose, bool pcap_enable)
   wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
                                   "DataMode",ns3::StringValue (phy_mode),
                                   "ControlMode",ns3::StringValue (phy_mode));
+
   // Set it to adhoc mode
   wifiMac.SetType ("ns3::AdhocWifiMac");
   
@@ -118,7 +118,7 @@ void rnl::Properties::setWifi(bool verbose, bool pcap_enable)
     wifiPhy.EnablePcap ("planner_ns3", devices);
   }
 
-  std::cerr<<"TEST2:Wifi Properties Set"<<std::endl;
+  std::cerr<<"Wifi Properties Set"<<std::endl;
 }
 
 void rnl::Properties::setInternet()
@@ -185,7 +185,7 @@ void rnl::Properties::setInternet()
   std::ofstream fout (fName.c_str());
   fout.close();
 
-  std::cerr<<"TEST4: IPs Assigned"<<std::endl;
+  std::cerr<<"IPs Assigned"<<std::endl;
 }
 
 void rnl::Properties::SetStaticRoute(ns3::Ptr<ns3::Node> n, const char* destination, const char* nextHop, uint32_t interface)
@@ -224,7 +224,7 @@ void rnl::DroneSoc::setSender (ns3::Ptr<ns3::Node> node, ns3::TypeId tid, const 
 {
   this->source = ns3::Socket::CreateSocket (node, tid);
   ns3::InetSocketAddress remote1 = ns3::InetSocketAddress (ns3::Ipv4Address (ip.c_str()), 9);
-  std::cerr << "IP to IP: " << this->id + 1 << ", "<< ip.c_str() <<std::endl;
+  std::cerr << "setSender IP to IP: " << (rnl::IP_BASE).c_str() << this->id + 1 << ", "<< ip.c_str() <<std::endl;
   this->source->Connect (remote1);
 }
 
@@ -314,7 +314,7 @@ void rnl::DroneSoc::sendPacket (ns3::Time pktInterval, int n)
 	ns3::Simulator::Schedule (n*pktInterval, &rnl::DroneSoc::sendPacket, this,
 	pktInterval, n);
 
-  std::cerr << this->id << " sp "<< this->msg_send.state << ", "<< this->msg_send.control << std::endl;
+  std::cerr << this->id << " sendPacket with state and control: "<< this->msg_send.state << ", "<< this->msg_send.control << std::endl;
 }
 
 void rnl::DroneSoc::initializeRosParams (ros::NodeHandle& nh)
@@ -370,7 +370,7 @@ void rnl::Planner::initializeMobility ()
   mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
   mobility.Install (wifi_prop.c);
 
-  std::cerr<<"TEST3:Planner Mobility Set"<<std::endl;
+  std::cerr<<"Planner Mobility Set"<<std::endl;
 }
 
 rnl::Nbt rnl::setinitialNbt (int id , int n)
@@ -580,7 +580,7 @@ void rnl::Planner::updateStateofCentre ()
           ns3::Simulator::ScheduleNow (&rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                           wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(i+unode->msg_send.neigh_cnt+1));
         }
-        std::cerr << i << " " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
+        std::cerr << i << " scheduled pkt with state and control: " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
       }
       else
       {
@@ -606,7 +606,7 @@ void rnl::Planner::updateStateofCentre ()
           ns3::Simulator::Schedule (2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                         wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(i+3));
 
-          std::cerr << i << " " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
+          std::cerr << i << " scheduled pkt with state and control: " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
         }
         else
         {
@@ -620,7 +620,7 @@ void rnl::Planner::updateStateofCentre ()
           ns3::Simulator::Schedule (2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                         wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(i+unode->msg_send.neigh_cnt));
           
-          std::cerr << i << " " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
+          std::cerr << i << " scheduled pkt with state and control: " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
         }
       }
     }
@@ -677,7 +677,7 @@ void rnl::Planner::updateWpts (int id)
       }
       
       unode ->circle_dir = 1;
-      std::cerr << unode->id << " has received go right command" <<std::endl;
+      std::cerr << unode->id << " has received CRTOP command" <<std::endl;
 
       ns3::Vector3D posNew(unode->msg_rec.p_loc.x, unode->msg_rec.p_loc.y - rnl::RC, unode->msg_rec.p_loc.z);
       rnl::getTrajectory (&unode->wpts, unode->pos, posNew, rnl::STEP);
@@ -689,7 +689,6 @@ void rnl::Planner::updateWpts (int id)
       unode->msg_send.control = (CCHANGEPAR);
       unode->msg_send.p_loc = unode->msg_rec.p_loc;
       unode->msg_send.p_id = unode->msg_rec.p_id;
-      std::cerr << "RTOP Called"<<std::endl;
       
       ns3::Simulator::Schedule ( 2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                       wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(unode->msg_rec.p_id+3+1));
@@ -704,7 +703,7 @@ void rnl::Planner::updateWpts (int id)
   {
     try
     {
-      std::cerr << unode->id << " has received go left command" <<std::endl;
+      std::cerr << unode->id << " has received CLTOP command" <<std::endl;
       ns3::Vector3D posNew(unode->msg_rec.p_loc.x, unode->msg_rec.p_loc.y + rnl::RC, unode->msg_rec.p_loc.z);
       rnl::getTrajectory (&unode->wpts, unode->pos, posNew, rnl::STEP);
       
@@ -716,7 +715,7 @@ void rnl::Planner::updateWpts (int id)
       unode->anch_id = unode->msg_rec.p_id;
       unode->msg_send.p_loc = unode->msg_rec.p_loc;
       unode->msg_send.p_id = unode->msg_rec.p_id;
-      std::cerr << "LTOP Called"<<std::endl;
+
       ns3::Simulator::Schedule ( 2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                     wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(unode->msg_rec.p_id+2+1));
 
@@ -732,7 +731,7 @@ void rnl::Planner::updateWpts (int id)
   {
     try
     {
-      std::cerr << unode->id << " has received go behind command" <<std::endl;
+      std::cerr << unode->id << " has received CBTOP command" <<std::endl;
       ns3::Vector3D posNew(unode->msg_rec.p_loc.x - rnl::RC, unode->msg_rec.p_loc.y, unode->msg_rec.p_loc.z);
       rnl::getTrajectory (&unode->wpts, unode->pos, posNew, rnl::STEP);
       
@@ -744,7 +743,7 @@ void rnl::Planner::updateWpts (int id)
       unode->anch_id = unode->msg_rec.p_id;
       unode->msg_send.p_loc = unode->pos;
       unode->msg_send.p_id = unode->id;
-      std::cerr << "BTOP Called"<<std::endl;
+
       ns3::Simulator::Schedule ( 2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                         wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(unode->id+2));
     }
@@ -791,7 +790,7 @@ void rnl::Planner::updateSocsfromRec ()
 
 void rnl::Planner::doLawnMoverScanning (ns3::Time interval, int id, ns3::Vector3D pos0)
 {
-  std::cerr << "----------doLawnMoverScanning_called----------"<< std::endl;
+  std::cerr << "----------doLawnMoverScanning called----------"<< std::endl;
 
   int dir = 1;
   if(id%3 == 1)
@@ -839,7 +838,7 @@ void rnl::Planner::doLawnMoverScanning (ns3::Time interval, int id, ns3::Vector3
 
   unode->lookaheadindex = 0;
 
-  std::cerr << id << " lawn movering"<< std::endl;
+  std::cerr << id << " lawn movering..."<< std::endl;
 
   nsocs[id].msg_rec.state &= ~SGDRONEREQ;
   nsocs[id].msg_send.state = SLAWNMOVERING | SGSITEREACHED | SSITEREACHED;
@@ -885,10 +884,10 @@ void rnl::Planner::updateSocs ()
       ns3::Simulator::Schedule (2*pkt_interval, &rnl::DroneSoc::setSender, unode, unode->source->GetNode(),
                                         wifi_prop.tid_val(), rnl::IP_BASE + std::to_string(i-(i%3)+1));
 
-      std::cerr << i << " " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
+      std::cerr << i << " scheduled pkt with state and control: " << unode->msg_send.state << ", " << unode->msg_send.control << std::endl;
     }
   }
-}
+} 
 
 void rnl::Planner::advancePos (ns3::Time interval)
 {
