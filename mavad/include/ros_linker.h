@@ -5,8 +5,6 @@
 #include <string>
 
 #include "ns3/core-module.h"
-
-
 #include "ns3/command-line.h"
 #include "ns3/config.h"
 #include "ns3/double.h"
@@ -20,6 +18,8 @@
 #include "ns3/internet-stack-helper.h"
 
 #include "ns3/netanim-module.h"
+
+
 /*Linker namespace is rnl
 
   Classes: 
@@ -51,7 +51,6 @@
 |node (n-1)|       ---------------------        | node (n+1)|
  ----------                                      -----------
 
-
 */
 namespace rnl {
 
@@ -59,7 +58,6 @@ namespace rnl {
     
     class Interface {
         public:
-            
             Interface(
                     std::string _phyMode, 
                     double _rss,  // -dBm
@@ -85,7 +83,7 @@ namespace rnl {
             /*Setting the internet options and assigning IPs*/
             void setInternet();
             
-            /*Sets the properties of reciever sockets for the nodes*/
+            /*Sets the properties of receiver sockets for the nodes*/
             void setReceivers();
             
             /*Sets the properties of sender sockets for the nodes*/
@@ -107,15 +105,13 @@ namespace rnl {
 
             /*********************************************************/
             
-            
         private:
-
             std::ostringstream msg1;
             std::ostringstream msg2;
             std::ostringstream msg3;
 
             std::string phy_mode; 
-            double rss;  // -dBm
+            double rss;  // -dBm [Deprecated]
             uint32_t packet_size; // bytes
             uint32_t num_packets;
             double interval; // seconds

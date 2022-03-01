@@ -4,8 +4,8 @@
 void
 rnl::setPosition (ns3::Ptr<ns3::Node> node, ns3::Vector3D position)
 {
-  ns3::Ptr<ns3::MobilityModel> mobility = node->GetObject<ns3::MobilityModel> ();
-  mobility->SetPosition (position);
+    ns3::Ptr<ns3::MobilityModel> mobility = node->GetObject<ns3::MobilityModel> ();
+    mobility->SetPosition (position);
 }
 
 
@@ -19,16 +19,15 @@ rnl::getPosition (ns3::Ptr<ns3::Node> node)
 
 bool
 rnl::getTrajectory
-    (
-        std::vector<ns3::Vector3D>* wpts,
-        ns3::Vector3D start_pos, 
-        ns3::Vector3D end_pos,
-        double step 
-    )
+(
+    std::vector<ns3::Vector3D>* wpts,
+    ns3::Vector3D start_pos, 
+    ns3::Vector3D end_pos,
+    double step 
+)
 {
     try
     {
-        
         wpts -> clear();
         ns3::Vector3D unit_vec = end_pos - start_pos;
 
@@ -39,7 +38,7 @@ rnl::getTrajectory
             throw std::range_error("Out of range");
 
         if (std::isnan(start_pos.x) || std::isnan(start_pos.y) || std::isnan(start_pos.z)
-            || std::isnan(end_pos.x) || std::isnan(end_pos.y) || std::isnan(end_pos.z))
+                || std::isnan(end_pos.x) || std::isnan(end_pos.y) || std::isnan(end_pos.z))
         {
             throw std::range_error ("Out of Range");
         }
@@ -80,12 +79,12 @@ rnl::getTrajectory
 
 bool
 rnl::getTrajectoryContinue
-    (
-        std::vector<ns3::Vector3D>* wpts,
-        ns3::Vector3D start_pos, 
-        ns3::Vector3D end_pos,
-        double step 
-    )
+(
+    std::vector<ns3::Vector3D>* wpts,
+    ns3::Vector3D start_pos, 
+    ns3::Vector3D end_pos,
+    double step 
+)
 {
     try
     {
@@ -98,7 +97,7 @@ rnl::getTrajectoryContinue
             throw std::range_error("Out of range");
 
         if (std::isnan(start_pos.x) || std::isnan(start_pos.y) || std::isnan(start_pos.z)
-            || std::isnan(end_pos.x) || std::isnan(end_pos.y) || std::isnan(end_pos.z))
+                || std::isnan(end_pos.x) || std::isnan(end_pos.y) || std::isnan(end_pos.z))
         {
             throw std::range_error ("Out of Range");
         }
@@ -140,11 +139,11 @@ rnl::getTrajectoryContinue
 
 float
 rnl::circlingOffset
-    (
-        ns3::Vector3D anch,
-        ns3::Vector3D child,
-        float         _cr
-    )
+(
+    ns3::Vector3D anch,
+    ns3::Vector3D child,
+    float         _cr
+)
 {
     float _f = ns3::CalculateDistance (anch, child) - _cr;
     return _f;
@@ -152,12 +151,14 @@ rnl::circlingOffset
 
 
 bool 
-rnl::getToCircleRange (std::vector<ns3::Vector3D>* wpts,
-                        ns3::Vector3D              _anch_p,
-                        ns3::Vector3D              _my_p,
-                        float                      cr,
-                        float                      step
-                    )
+rnl::getToCircleRange
+(
+    std::vector<ns3::Vector3D>* wpts,
+    ns3::Vector3D               _anch_p,
+    ns3::Vector3D               _my_p,
+    float                       cr,
+    float                       step
+)
 {
     ns3::Vector3D unit_vec = _anch_p - _my_p;
     unit_vec.x = unit_vec.x / unit_vec.GetLength();

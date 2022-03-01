@@ -38,7 +38,7 @@ rnl::USMsg::USMsg ()
     p_id   = -998;
     neigh_cnt = -998;
     p_loc  = ns3::Vector3D (-998,-998,-998);
-		bc_nbs = "";
+	bc_nbs = "";
 }
 
 rnl::URMsg::URMsg ()
@@ -51,7 +51,7 @@ rnl::URMsg::URMsg ()
     p_id   = -998;
     neigh_cnt = -998;
     p_loc  = ns3::Vector3D (-998,-998,-998);
-		bc_nbs = "";
+	bc_nbs = "";
 }
 
 void rnl::USMsg::serialize (std::string* loc)
@@ -59,14 +59,14 @@ void rnl::USMsg::serialize (std::string* loc)
     std::stringstream _msg;
     _msg << "u" << rnl::DELIM;
     _msg << source_id  << rnl::DELIM
-        << dst_id  << rnl::DELIM
-        << nbs     << rnl::DELIM
-        << control << rnl::DELIM
-        << state   << rnl::DELIM
-        << p_id    << rnl::DELIM
-        << neigh_cnt << rnl::DELIM
-        << std::fixed << p_loc
-        << '\0';
+         << dst_id  << rnl::DELIM
+         << nbs     << rnl::DELIM
+         << control << rnl::DELIM
+         << state   << rnl::DELIM
+         << p_id    << rnl::DELIM
+         << neigh_cnt << rnl::DELIM
+         << std::fixed << p_loc
+         << '\0';
 
     *loc = _msg.str ();
 }
@@ -76,7 +76,7 @@ void rnl::USMsg::serializeBC (std::string* loc, int id, ns3::Vector3D pos)
     std::stringstream _msg;
     _msg << "b" << rnl::DELIM;
     _msg << id  << rnl::DELIM
-    <<   std::fixed << pos << '\0';
+         <<   std::fixed << pos << '\0';
     *loc = _msg.str ();
 }
 
@@ -162,7 +162,7 @@ void rnl::Nbt::serialize (std::string* dst)
     std::stringstream f;    
     for (auto n: one_hop)
     {
-      f << n.first << rnl::DELIM_NBTID_POS << n.second.x << rnl::DELIM_NBTPOS << n.second.y << rnl::DELIM_NBTPOS << n.second.z << rnl::DELIM_NBTHOP;
+        f << n.first << rnl::DELIM_NBTID_POS << n.second.x << rnl::DELIM_NBTPOS << n.second.y << rnl::DELIM_NBTPOS << n.second.z << rnl::DELIM_NBTHOP;
     }
     
     f << rnl::DELIM_NBTMHOP;
@@ -181,6 +181,7 @@ void rnl::Nbt::parseSingleNb(std::string msg)
 	if (msg.size())
 	{
 		std::string _tok;
+
 		/*Get BC ID*/
 		_tok = msg.substr (0, msg.find(rnl::DELIM));
 		int _id = std::stoi (_tok);

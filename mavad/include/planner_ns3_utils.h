@@ -1,6 +1,5 @@
 /**
- * @brief Utility functions for Swarm Planner 
- * 
+ * @brief Utility functions for Swarm Planner
  */
 #pragma once
 #include <iomanip>
@@ -40,6 +39,7 @@ namespace rnl {
      * @brief Get the Position object
      * 
      * @param node get the position of object at this node 
+     * 
      * @return ns3::Vector3D 
      */
     ns3::Vector3D getPosition
@@ -54,8 +54,8 @@ namespace rnl {
      * @param start_pos Starting position for the robot
      * @param end_pos Ending position for the robot
      * @param step step size at which point seperation is required in the trajectory
-     * @return true if trajectory found
-     * @return false if no trajectory was found
+     * 
+     * @return true if trajectory found else false
      */
     bool getTrajectory
     (
@@ -81,17 +81,17 @@ namespace rnl {
      * @param _my_p Start Position
      * @param cr Circling Radius required
      * @param step Step size at which to add waypoints
-     * @return true if succeeded
-     * @return false if failed
+     * 
+     * @return true if succeeded else false
      */
-    bool    getToCircleRange
-            (
-                std::vector<ns3::Vector3D>* wpts,
-                ns3::Vector3D              _anch_p,
-                ns3::Vector3D              _my_p,
-                float                      cr,
-                float                      step
-            );
+    bool getToCircleRange
+    (
+        std::vector<ns3::Vector3D>* wpts,
+        ns3::Vector3D              _anch_p,
+        ns3::Vector3D              _my_p,
+        float                      cr,
+        float                      step
+    );
 
     /**
      * @brief Offset to reach from child location to anchor location
@@ -100,14 +100,15 @@ namespace rnl {
      * @param anch Anchor location
      * @param child Child location
      * @param _cr Circling Radius
+     * 
      * @return float Offset returned
      */
-    float   circlingOffset
-            (
-                ns3::Vector3D anch,
-                ns3::Vector3D child,
-                float         _cr
-            );
+    float circlingOffset
+    (
+        ns3::Vector3D anch,
+        ns3::Vector3D child,
+        float         _cr
+    );
 
     /**
      * @brief Waypoints passed for Position Hold requirement
