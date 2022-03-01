@@ -49,7 +49,6 @@ namespace rnl{
     {   
         /**
          * @brief Construct a new Drone Soc object
-         * 
          */
         DroneSoc ();
 
@@ -58,7 +57,6 @@ namespace rnl{
          * This registers a callback which is periodically called
          * 
          * @param pktInterval
-         * 
          * @param n number of nodes in the swarm 
          */
         void sendPacket (ns3::Time pktInterval, int n);
@@ -148,7 +146,7 @@ namespace rnl{
         std::vector<ns3::Vector3D>    wpts; /**< Waypoints that drone needs to follow */
         ns3::Vector3D                 pos; /**< Current position of the drone */
         int                           lookaheadindex; /**< Look ahead index for the drone */
-        int                           toggle_bc; /**< toggle broadcast on */
+        int                           toggle_bc; /**< toggle broadcast on/off */
 
         ros::Publisher                drone_lk_ahead_pub;
         ros::Subscriber               drone_pos_sub;
@@ -209,8 +207,8 @@ namespace rnl{
             /**
              * @brief Set the Wifi object
              * 
-             * @param verb If verbose required
-             * @param pcap_enable If pcap is enabled
+             * @param verb Is verbose required
+             * @param pcap_enable Is pcap and ascii tracing is required
              */
             void setWifi(bool verb, bool pcap_enable);
 
@@ -267,7 +265,7 @@ namespace rnl{
             ns3::TypeId tid; /**< Type ID being used */
 
             std::string phy_mode; /**< Phy Mode */
-            double rss;  /**< Rss (in dBm) value Deprecated*/
+            double rss;  /**< Rss value (in dBm) Deprecated*/
             int num_nodes; /**< Number of nodes */
 
             ns3::AsciiTraceHelper ascii;
@@ -305,16 +303,6 @@ namespace rnl{
     class Planner{
         public:
             /**
-             * @brief Construct a new Planner object
-             * 
-             * @param p wifi properties
-             * @param _no_nodes number of nodes
-             * @param _pkt_int packet interval
-             * @param pos_int position interval, this is to be used for broadcasting positions once UAV reaches desired location
-             * @param _stp Stop time for simulation
-             */
-
-            /**
              * @brief      Construct a new Planner object
              *
              * @param      _nh          node handle
@@ -336,7 +324,6 @@ namespace rnl{
 
             /**
              * @brief Initialize sockets
-             * 
              */
             void initializeSockets ();
 
