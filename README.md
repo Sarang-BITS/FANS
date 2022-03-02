@@ -47,7 +47,7 @@ make
     source <path_to_fans_ws>/devel/setup.bash
     roslaunch px4 sitl8drones.launch
     ```
-    * Launch the planner control interface for the drones (in terminal 2). You should see the 8 drones armed and hovering at a certain height in the Gazebo simulator window
+    * Launch the planner control interface for the drones (in terminal 2). You should see the 8 drones armed and hovering at a certain height in the Gazebo simulator window. Note : If you find only some of the drones hovering and others landed on the ground, kill the process (press Ctrl+C in terminal 2), let the drones land and run the launch file again.
     ```bash
     source <path_to_fans_ws>/devel/setup.bash
     roslaunch pci pci8drones.launch
