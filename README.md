@@ -15,6 +15,7 @@ cp -r ~/FANS/planner_msgs <path_to_fans_ws>/src/
 cp -r ~/FANS/pci <path_to_fans_ws>/src/
 cp -r ~/FANS/mavad <path_to_ns3-all-in-one>/NS3/
 cp ~/FANS/sitl8drones.launch <path_to_fans_ws>/src/PX4-Autopilot/launch/
+cp ~/FANS/sitl8drones.launch <path_to_fans_ws>/src/pci/launch/
 ```
 * Build your ROS workspace (fans_ws)
 ```bash
