@@ -1,0 +1,41 @@
+<launch>
+  <group ns="uav0">
+    <rosparam command="load" file="$(find pci)/config/uav0.yaml" />
+    <node pkg="pci" type="pci_node" name="uav0" output="screen" />
+  </group>
+
+  <group ns="uav1">
+    <rosparam command="load" file="$(find pci)/config/uav1.yaml" />
+    <node pkg="pci" type="pci_node" name="uav1" output="screen" />
+  </group>
+
+  <group ns="uav2">
+    <rosparam command="load" file="$(find pci)/config/uav2.yaml" />
+    <node pkg="pci" type="pci_node" name="uav2" output="screen" />
+  </group>
+
+  <group ns="uav3">
+    <rosparam command="load" file="$(find pci)/config/uav3.yaml" />
+    <node pkg="pci" type="pci_node" name="uav3" output="screen" />
+  </group>
+
+  <group ns="uav4">
+    <rosparam command="load" file="$(find pci)/config/uav4.yaml" />
+    <node pkg="pci" type="pci_node" name="uav4" output="screen" />
+  </group>
+
+  <group ns="uav5">
+    <rosparam command="load" file="$(find pci)/config/uav5.yaml" />
+    <node pkg="pci" type="pci_node" name="uav5" output="screen" />
+  </group>
+
+  <group ns="uav6">
+    <rosparam command="load" file="$(find pci)/config/uav6.yaml" />
+    <node pkg="pci" type="pci_node" name="uav6" output="screen" />
+  </group>
+
+  <group ns="uav7">
+    <rosparam command="load" file="$(find pci)/config/uav7.yaml" />
+    <node pkg="pci" type="pci_node" name="uav7" output="screen" />
+  </group>
+</launch>
