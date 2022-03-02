@@ -116,6 +116,7 @@ export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/fans_ws/src/PX4-Autopilot/Tools/sitl
 	</axis>
 </joint>
 ```
+* Note that the simulation might get computationally heavy with multiple drones streaming their camera feeds at the same time
 ### 7) Testing the setup
 * Source your workspace in the current working terminal
 ```
