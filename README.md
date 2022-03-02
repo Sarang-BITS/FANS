@@ -7,7 +7,7 @@
 
 ## Setup and demo
 * To use this project, you need to install ROS, MAVROS, PX4-SITL and NS3 (using CMake). Note that this project has been tested on Ubuntu 18.04 OS and ROS Melodic distribution. All the instructions to install these dependencies are given in the [SETUP.md](https://github.com/Sarang-BITS/airborne_networks/blob/main/SETUP.md) file
-* Clone this repo in your systems and copy [pci](https://github.com/Sarang-BITS/FANS/tree/main/pci) and [planner_msgs](https://github.com/Sarang-BITS/FANS/tree/main/planner_msgs) to `fans_ws/src` (ROS workspace), [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`, and `sitl8drones.launch` to `<path_to_fans_ws>/src/PX4-Autopilot/launch` 
+* Clone this repo in your systems and copy [pci](https://github.com/Sarang-BITS/FANS/tree/main/pci) and [planner_msgs](https://github.com/Sarang-BITS/FANS/tree/main/planner_msgs) to `fans_ws/src` (ROS workspace), [mavad](https://github.com/Sarang-BITS/FANS/tree/main/mavad) to `ns3-all-in-one/NS3`, `sitl8drones.launch` to `<path_to_fans_ws>/src/PX4-Autopilot/launch`, and `pci8drones.launch` to `<path_to_fans_ws>/src/pci/launch`
 ```bash
 cd ~
 git clone https://github.com/Sarang-BITS/FANS.git
@@ -15,7 +15,7 @@ cp -r ~/FANS/planner_msgs <path_to_fans_ws>/src/
 cp -r ~/FANS/pci <path_to_fans_ws>/src/
 cp -r ~/FANS/mavad <path_to_ns3-all-in-one>/NS3/
 cp ~/FANS/sitl8drones.launch <path_to_fans_ws>/src/PX4-Autopilot/launch/
-cp ~/FANS/sitl8drones.launch <path_to_fans_ws>/src/pci/launch/
+cp ~/FANS/pci8drones.launch <path_to_fans_ws>/src/pci/launch/
 ```
 * Build your ROS workspace (fans_ws)
 ```bash
