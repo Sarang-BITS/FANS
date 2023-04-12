@@ -80,7 +80,7 @@ This work is supported by Science and Engineering Research Board (SERB-SRG/2019/
 We would like to extend our special thanks of gratitude to [Dr. Mohit P. Tahiliani](https://github.com/mohittahiliani) for his valuable guidance throughout the course of this project
 
 ## Related Publication
-[FANS: Flying Ad-hoc Network Simulator] (https://dl.acm.org/doi/pdf/10.1145/3545250.3560848)
+[FANS: Flying Ad-hoc Network Simulator](https://dl.acm.org/doi/pdf/10.1145/3545250.3560848)
 
 ## Branches
 * **main** : Contains the entire co-simulator setup which integrates NS3 (networking) and PX4-SITL in Gazebo (robot simulator)
